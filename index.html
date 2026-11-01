@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EGB PLC Power Monitoring Center</title>
 
-  <!-- Firebase JS SDK (Compat Library) -->
+  <!-- Firebase JS SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 
-  <!-- Chart.js Libraries -->
+  <!-- Chart.js and Zoom Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
@@ -22,9 +22,7 @@
       --header-bg: linear-gradient(135deg, #0b132b 0%, #1c2541 60%, #0b132b 100%);
       --accent-gold: #f59e0b;
       --accent-cyan: #38bdf8;
-      --accent-electric: #0ea5e9;
       --btn-red: linear-gradient(135deg, #dc2626, #b91c1c);
-      --btn-blue: linear-gradient(135deg, #0284c7, #0369a1);
 
       --color-gt: #0284c7;
       --color-st: #0891b2;
@@ -51,9 +49,7 @@
     .view-page { display: none; width: 100vw; height: 100vh; flex-direction: column; }
     .view-page.active { display: flex; }
 
-    /* =========================================
-       PAGE 1: LOGIN STYLES
-       ========================================= */
+    /* Login Page */
     .top-bar-login {
       background: var(--header-bg);
       color: #ffffff;
@@ -66,13 +62,13 @@
     }
 
     .logo-img {
-      width: 65px; height: 65px; border-radius: 50%; object-fit: contain;
+      width: 60px; height: 60px; border-radius: 50%; object-fit: contain;
       background: #ffffff; padding: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       border: 2px solid rgba(255, 255, 255, 0.9); flex-shrink: 0;
     }
 
     .title-box { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
-    .company-title { font-size: 15px; font-weight: 800; letter-spacing: 0.3px; color: #ffffff; text-transform: uppercase; line-height: 1.25; }
+    .company-title { font-size: 16px; font-weight: 800; letter-spacing: 0.3px; color: #ffffff; text-transform: uppercase; line-height: 1.2; }
     .ministry-title { font-size: 11px; font-weight: 600; color: var(--accent-cyan); margin-top: 2px; }
 
     .tagline-banner { background: #1e293b; color: var(--accent-gold); font-size: 11.5px; font-weight: 700; text-align: center; padding: 6px; border-bottom: 1px solid #334155; }
@@ -84,20 +80,13 @@
     .input-box { width: 100%; padding: 12px; font-size: 14px; color: #0f172a; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; outline: none; }
     .btn-submit { background: var(--btn-red); color: #ffffff; border: none; border-radius: 10px; padding: 12px; font-size: 15px; font-weight: 800; cursor: pointer; }
 
-    /* =========================================
-       PAGE 2: FULLSCREEN 4-COLUMN DESKTOP VIEW
-       ========================================= */
-    #page-dashboard {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+    /* Dashboard Shell */
+    #page-dashboard { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
     .dashboard-header-bar {
       background: var(--header-bg);
       color: #ffffff;
-      padding: 8px 16px;
+      padding: 6px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -111,21 +100,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
+      padding: 6px 16px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
       flex-shrink: 0;
     }
 
-    .mw-total-badge { font-weight: 800; font-size: 15px; color: #1e293b; display: flex; align-items: center; gap: 8px; }
-    .mw-val-text { font-size: 20px; font-weight: 900; color: #15803d; font-family: var(--font-aptos); }
-    .status-summary-group { display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 800; }
+    .mw-total-badge { font-weight: 800; font-size: 14px; color: #1e293b; display: flex; align-items: center; gap: 8px; }
+    .mw-val-text { font-size: 19px; font-weight: 900; color: #15803d; font-family: var(--font-aptos); }
+    .status-summary-group { display: flex; align-items: center; gap: 16px; font-size: 12.5px; font-weight: 800; }
     .status-item { display: flex; align-items: center; gap: 6px; }
     .dot-st { width: 9px; height: 9px; border-radius: 50%; }
     .dot-run { background: #dc2626; box-shadow: 0 0 8px #dc2626; }
     .dot-off { background: #16a34a; }
-    .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 6px 14px; font-weight: 800; font-size: 12px; cursor: pointer; }
+    .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 5px 12px; font-weight: 800; font-size: 12px; cursor: pointer; }
 
-    /* 4-Column Horizontal Layout Grid (Fits Height Perfectly) */
+    /* 4 Column Layout Container */
     .dashboard-grid {
       flex: 1;
       display: grid;
@@ -140,11 +129,11 @@
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 10px;
-      padding: 10px;
+      padding: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Fills empty vertical space */
+      justify-content: space-between;
       height: 100%;
       min-height: 0;
       gap: 6px;
@@ -156,34 +145,34 @@
       align-items: center;
       background: linear-gradient(135deg, #0f172a, #1e3a8a);
       color: #ffffff;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
       flex-shrink: 0;
     }
 
-    .plant-header-left { display: flex; align-items: center; gap: 10px; }
-    .plant-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; flex-shrink: 0; }
-    .plant-title { font-size: 15px; font-weight: 900; line-height: 1.2; }
-    
-    .status-pill { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 12px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .plant-header-left { display: flex; align-items: center; gap: 8px; }
+    .plant-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; flex-shrink: 0; }
+    .plant-title { font-size: 14px; font-weight: 900; line-height: 1.2; }
+
+    .status-pill { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 12px; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
     .status-running { background: #ffffff; color: var(--red-alert); }
     .status-shutdown { background: #ffffff; color: var(--green-mw); }
 
-    .action-control-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; flex-shrink: 0; }
-    .capacity-gauge-box { display: flex; flex-direction: column; gap: 4px; flex: 1; margin-right: 8px; }
-    .gauge-header { font-size: 12px; font-weight: 700; color: #334155; }
+    .action-control-bar { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; flex-shrink: 0; }
+    .capacity-gauge-box { display: flex; flex-direction: column; gap: 3px; flex: 1; margin-right: 8px; }
+    .gauge-header { font-size: 11.5px; font-weight: 700; color: #334155; }
     .gauge-bar-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
     .gauge-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #0284c7 0%, #15803d 100%); border-radius: 4px; transition: width 0.4s ease; }
 
-    .btn-export-main { background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 6px; padding: 6px 10px; font-size: 11.5px; font-weight: 800; cursor: pointer; }
+    .btn-export-main { background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 6px; padding: 5px 9px; font-size: 11px; font-weight: 800; cursor: pointer; transition: opacity 0.2s; }
+    .btn-export-main:hover { opacity: 0.9; }
 
-    /* Unit Cards (Stretched to match total container height) */
     .unit-card {
       background: rgba(2, 132, 199, 0.08);
       border: 1.5px solid rgba(2, 132, 199, 0.25);
       border-left: 4.5px solid var(--color-gt);
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: 6px 8px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -193,28 +182,28 @@
     .card-gross { background: rgba(79, 70, 229, 0.08); border-color: rgba(79, 70, 229, 0.25); border-left-color: var(--color-gross); }
     .card-dp { background: rgba(217, 119, 6, 0.08); border-color: rgba(217, 119, 6, 0.25); border-left-color: var(--color-dp); }
 
-    .unit-title-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px dashed rgba(0,0,0,0.12); }
-    .section-title { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; }
+    .unit-title-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px dashed rgba(0,0,0,0.12); }
+    .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; }
     .title-gt { color: var(--color-gt); } .title-st { color: var(--color-st); } .title-gross { color: var(--color-gross); } .title-dp { color: var(--color-dp); }
 
-    .param-list { display: flex; flex-direction: column; gap: 4px; }
-    .param-row { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px 8px; }
-    .param-label-text { font-size: 12.5px; font-weight: 700; color: #334155; display: flex; align-items: center; gap: 6px; }
-    .param-value-text { font-size: 17px; font-weight: 900; font-family: var(--font-aptos); text-align: right; }
+    .param-list { display: flex; flex-direction: column; gap: 3px; }
+    .param-row { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 3px 6px; }
+    .param-label-text { font-size: 12px; font-weight: 700; color: #334155; display: flex; align-items: center; gap: 6px; }
+    .param-value-text { font-size: 16px; font-weight: 900; font-family: var(--font-aptos); text-align: right; }
 
     .val-mw { color: var(--green-mw); } .val-mvar { color: var(--blue-mvar); } .val-pf { color: var(--amber-pf); } .val-dp { color: var(--green-mw); }
 
-    /* Column 4 SCADA Frame */
+    /* Chart Column Frame */
     .chart-panel-frame { display: flex; flex-direction: column; gap: 6px; height: 100%; min-height: 0; }
-    .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+    .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 6px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
     .stats-row { display: flex; justify-content: space-between; gap: 4px; flex-shrink: 0; }
-    .stat-badge { flex: 1; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 5px; text-align: center; font-size: 10px; }
+    .stat-badge { flex: 1; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 4px; text-align: center; font-size: 9.5px; }
     .chart-container { flex: 1; position: relative; width: 100%; min-height: 0; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 6px; }
   </style>
 </head>
 <body>
 
-  <!-- PAGE 1: LOGIN VIEW -->
+  <!-- LOGIN PAGE -->
   <div id="page-login" class="view-page active">
     <div class="top-bar-login">
       <img src="govtlogo.webp" class="logo-img" alt="Govt Logo">
@@ -245,7 +234,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2: FULLSCREEN 4-COLUMN DASHBOARD VIEW -->
+  <!-- DASHBOARD PAGE -->
   <div id="page-dashboard" class="view-page">
     
     <div class="dashboard-header-bar">
@@ -260,19 +249,19 @@
     <div class="sub-summary-bar">
       <div class="mw-total-badge">
         <span>Total MW:</span>
-        <span class="mw-val-text" id="total_mw_val">736.59</span>
+        <span class="mw-val-text" id="total_mw_val">0.00</span>
       </div>
 
       <div class="status-summary-group">
         <div class="status-item">
           <span>335 MW:</span>
-          <span class="dot-st dot-run" id="hdr_dot_335"></span>
-          <span id="hdr_txt_335" style="color:#dc2626;">Running</span>
+          <span class="dot-st dot-off" id="hdr_dot_335"></span>
+          <span id="hdr_txt_335" style="color:#16a34a;">Shutdown</span>
         </div>
         <div class="status-item">
           <span>412 MW:</span>
-          <span class="dot-st dot-run" id="hdr_dot_412"></span>
-          <span id="hdr_txt_412" style="color:#dc2626;">Running</span>
+          <span class="dot-st dot-off" id="hdr_dot_412"></span>
+          <span id="hdr_txt_412" style="color:#16a34a;">Shutdown</span>
         </div>
         <div class="status-item">
           <span>2x120 MW:</span>
@@ -282,12 +271,12 @@
       </div>
 
       <div style="display:flex; align-items:center; gap:12px;">
-        <span style="font-size:12.5px; color:#475569; font-weight:700;" id="timestamp_val">--/--/---- --:--:--</span>
+        <span style="font-size:12px; color:#475569; font-weight:700;" id="timestamp_val">--/--/---- --:--:--</span>
         <button class="btn-logout" onclick="handleLogout()">Logout</button>
       </div>
     </div>
 
-    <!-- 4 COLUMNS SIDE-BY-SIDE FILLING FULL HEIGHT -->
+    <!-- 4 COLUMNS -->
     <div class="dashboard-grid">
 
       <!-- COL 1: 335 MW CCPP -->
@@ -297,50 +286,50 @@
             <img src="335.png" class="plant-img" alt="335">
             <div class="plant-title">Siddhirganj 335 MW CCPP</div>
           </div>
-          <div id="st-335-pill" class="status-pill status-running"><span id="txt_335">Running</span></div>
+          <div id="st-335-pill" class="status-pill status-shutdown"><span id="txt_335">Shutdown</span></div>
         </div>
 
         <div class="action-control-bar">
           <div class="capacity-gauge-box">
-            <div class="gauge-header">Generation: <strong id="cap335_val" style="color:#15803d;">330.06</strong>/335 MW (<span id="pct335">98.5%</span>)</div>
-            <div class="gauge-bar-track"><div id="bar335_fill" class="gauge-bar-fill" style="width: 98.5%;"></div></div>
+            <div class="gauge-header">Generation: <strong id="cap335_val" style="color:#15803d;">0.00</strong>/335 MW (<span id="pct335">0.0%</span>)</div>
+            <div class="gauge-bar-track"><div id="bar335_fill" class="gauge-bar-fill"></div></div>
           </div>
-          <button class="btn-export-main">Export Data</button>
+          <button class="btn-export-main" onclick="exportPlantCSV('335MW')">Export Data</button>
         </div>
         
         <div class="unit-card">
           <div class="unit-title-row"><span class="section-title title-gt">⚙️ Gas Turbine</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt335_mw">211.21</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt335_mvar">110.42</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gt335_pf">0.89</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt335_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt335_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gt335_pf">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-st">
           <div class="unit-title-row"><span class="section-title title-st">⚙️ Steam Turbine</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="st335_mw">118.85</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="st335_mvar">59.80</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="st335_pf">0.89</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="st335_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="st335_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="st335_pf">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-gross">
           <div class="unit-title-row"><span class="section-title title-gross">🏭 Gross CCPP Output</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross335_mw">330.06</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross335_mvar">170.22</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross335_pf">0.89</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross335_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross335_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross335_pf">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-dp">
           <div class="unit-title-row"><span class="section-title title-dp">⚖️ Filter Differential Pressure</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">🦅 Birdscreen DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_bird">0.83</span></div>
-            <div class="param-row"><span class="param-label-text">▦ Main Filter DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_main">1.80</span></div>
-            <div class="param-row"><span class="param-label-text">Σ Total DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_total">2.63</span></div>
+            <div class="param-row"><span class="param-label-text">🦅 Birdscreen DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_bird">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">▦ Main Filter DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_main">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">Σ Total DP (inH2O)</span><span class="param-value-text val-dp" id="dp335_total">0.00</span></div>
           </div>
         </div>
       </div>
@@ -352,41 +341,41 @@
             <img src="412MW.png" class="plant-img" alt="412">
             <div class="plant-title">Haripur 412 MW CCPP</div>
           </div>
-          <div id="st-412-pill" class="status-pill status-running"><span id="txt_412">Running</span></div>
+          <div id="st-412-pill" class="status-pill status-shutdown"><span id="txt_412">Shutdown</span></div>
         </div>
 
         <div class="action-control-bar">
           <div class="capacity-gauge-box">
-            <div class="gauge-header">Generation: <strong id="cap412_val" style="color:#15803d;">405.54</strong>/412 MW (<span id="pct412">98.4%</span>)</div>
-            <div class="gauge-bar-track"><div id="bar412_fill" class="gauge-bar-fill" style="width: 98.4%;"></div></div>
+            <div class="gauge-header">Generation: <strong id="cap412_val" style="color:#15803d;">0.00</strong>/412 MW (<span id="pct412">0.0%</span>)</div>
+            <div class="gauge-bar-track"><div id="bar412_fill" class="gauge-bar-fill"></div></div>
           </div>
-          <button class="btn-export-main">Export Data</button>
+          <button class="btn-export-main" onclick="exportPlantCSV('412MW')">Export Data</button>
         </div>
 
         <div class="unit-card">
           <div class="unit-title-row"><span class="section-title title-gt">⚙️ Gas Turbine</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt412_mw">275.60</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt412_mvar">189.55</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gt412_pf">0.82</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt412_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt412_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gt412_pf">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-st">
           <div class="unit-title-row"><span class="section-title title-st">⚙️ Steam Turbine</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="st412_mw">129.94</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="st412_mvar">24.08</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="st412_pf">0.98</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="st412_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="st412_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="st412_pf">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-gross">
           <div class="unit-title-row"><span class="section-title title-gross">🏭 Gross CCPP Output</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross412_mw">405.54</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross412_mvar">213.63</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross412_pf">0.88</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross412_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross412_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross412_pf">0.00</span></div>
           </div>
         </div>
       </div>
@@ -403,36 +392,36 @@
 
         <div class="action-control-bar">
           <div class="capacity-gauge-box">
-            <div class="gauge-header">Generation: <strong id="cap120_val" style="color:#15803d;">0.99</strong>/240 MW (<span id="pct120">0.4%</span>)</div>
-            <div class="gauge-bar-track"><div id="bar120_fill" class="gauge-bar-fill" style="width: 0.4%;"></div></div>
+            <div class="gauge-header">Generation: <strong id="cap120_val" style="color:#15803d;">0.00</strong>/240 MW (<span id="pct120">0.0%</span>)</div>
+            <div class="gauge-bar-track"><div id="bar120_fill" class="gauge-bar-fill"></div></div>
           </div>
-          <button class="btn-export-main">Export Data</button>
+          <button class="btn-export-main" onclick="exportPlantCSV('120MW')">Export Data</button>
         </div>
 
         <div class="unit-card">
           <div class="unit-title-row"><span class="section-title title-gt">⚙️ Gas Turbine 1</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt1_mw">0.74</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt1_mvar">0.25</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="pf_gt1">0.95</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt1_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt1_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="pf_gt1">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-gt2">
           <div class="unit-title-row"><span class="section-title title-st">⚙️ Gas Turbine 2</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt2_mw">0.25</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt2_mvar">-0.87</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="pf_gt2">0.28</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt2_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt2_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="pf_gt2">0.00</span></div>
           </div>
         </div>
 
         <div class="unit-card card-gross">
           <div class="unit-title-row"><span class="section-title title-gross">🏭 Gross PPP Output</span></div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross120_mw">0.99</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross120_mvar">-0.62</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross120_pf">0.85</span></div>
+            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross120_mw">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross120_mvar">0.00</span></div>
+            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross120_pf">0.00</span></div>
           </div>
         </div>
       </div>
@@ -448,18 +437,18 @@
           <div class="stats-row">
             <div class="stat-badge">
               <div style="color:#0284c7; font-weight:800;">335MW CCPP</div>
-              <div>Max: <span style="color:#dc2626;" id="max-335">342.9</span> | Min: <span style="color:#16a34a;" id="min-335">274.6</span></div>
-              <div style="color:#dc2626; font-weight:800;">● Running</div>
+              <div>Max: <span style="color:#dc2626;" id="max-335">0.0</span> | Min: <span style="color:#16a34a;" id="min-335">0.0</span></div>
+              <div id="stat_st_335" style="color:#dc2626; font-weight:800;">● Shutdown</div>
             </div>
             <div class="stat-badge">
               <div style="color:#16a34a; font-weight:800;">2x120MW PPP</div>
-              <div>Max: <span style="color:#dc2626;" id="max-120">214.8</span> | Min: <span style="color:#16a34a;" id="min-120">0.9</span></div>
-              <div style="color:#16a34a; font-weight:800;">● Shutdown</div>
+              <div>Max: <span style="color:#dc2626;" id="max-120">0.0</span> | Min: <span style="color:#16a34a;" id="min-120">0.0</span></div>
+              <div id="stat_st_120" style="color:#16a34a; font-weight:800;">● Shutdown</div>
             </div>
             <div class="stat-badge">
               <div style="color:#dc2626; font-weight:800;">412MW CCPP</div>
-              <div>Max: <span style="color:#dc2626;" id="max-412">436.5</span> | Min: <span style="color:#16a34a;" id="min-412">0.0</span></div>
-              <div style="color:#dc2626; font-weight:800;">● Running</div>
+              <div>Max: <span style="color:#dc2626;" id="max-412">0.0</span> | Min: <span style="color:#16a34a;" id="min-412">0.0</span></div>
+              <div id="stat_st_412" style="color:#dc2626; font-weight:800;">● Shutdown</div>
             </div>
           </div>
 
@@ -488,17 +477,26 @@
     const db = firebase.database();
 
     let chart = null;
-    let teleData = { p335: 330.06, p412: 405.54, p120: 0.99 };
+    let liveState = {
+      plant_335: { gross_mw: 0, gt_mw: 0, gt_mvar: 0, st_mw: 0, st_mvar: 0, birdscreen_dp: 0, main_dp: 0 },
+      plant_412: { gross_mw: 0, gt_mw: 0, gt_mvar: 0, st_mw: 0, st_mvar: 0 },
+      plant_120: { gross_mw: 0, gt1_mw: 0, gt1_mvar: 0, gt2_mw: 0, gt2_mvar: 0 }
+    };
 
-    function parseNum(v) { let n = Number(v); return isNaN(n) ? 0 : n; }
-    function calcPF(mw, mvar) { let app = Math.sqrt(mw * mw + mvar * mvar); return app > 0 ? (mw / app) : 0; }
+    let history335 = [], history412 = [], history120 = [];
+
+    function parseNum(v) { let n = parseFloat(v); return isNaN(n) ? 0 : n; }
+    function calcPF(mw, mvar) {
+      let app = Math.sqrt(mw * mw + mvar * mvar);
+      return app > 0 ? (mw / app) : 0;
+    }
 
     function showPage(pageId) {
       document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
       if (pageId === 'page-dashboard') {
         initChart();
-        startRealtimeDatabase();
+        startRealtimeListeners();
       }
     }
 
@@ -509,53 +507,61 @@
     function handleSubmit() {
       let email = document.getElementById('email-input').value.trim();
       let pass = document.getElementById('password-input').value.trim();
-      auth.signInWithEmailAndPassword(email, pass).catch(() => {
-        showPage('page-dashboard');
-      });
+      auth.signInWithEmailAndPassword(email, pass).catch(() => showPage('page-dashboard'));
     }
 
     function handleLogout() { auth.signOut().then(() => showPage('page-login')); }
 
-    function updateUIWithData(data) {
-      if (!data) return;
+    // Start Live Database Sync Across Top-Level Paths
+    function startRealtimeListeners() {
+      db.ref().on('value', (snapshot) => {
+        if (snapshot.exists()) {
+          let data = snapshot.val();
+          if (data.plant_335) liveState.plant_335 = data.plant_335;
+          if (data.plant_412) liveState.plant_412 = data.plant_412;
+          if (data.plant_120) liveState.plant_120 = data.plant_120;
+          renderUI();
+        }
+      });
+    }
+
+    function renderUI() {
+      const nowStr = new Date().toLocaleTimeString();
 
       // 1. Plant 335
-      let d335 = data.plant_335 || {};
-      let gtMW335 = parseNum(d335.gt_mw || 211.21);
-      let gtMVAR335 = parseNum(d335.gt_mvar || 110.42);
-      let stMW335 = parseNum(d335.st_mw || 118.85);
-      let stMVAR335 = parseNum(d335.st_mvar || 59.80);
+      let p335 = liveState.plant_335;
+      let gt335_mw = parseNum(p335.gt_mw);
+      let gt335_mvar = parseNum(p335.gt_mvar);
+      let st335_mw = parseNum(p335.st_mw);
+      let st335_mvar = parseNum(p335.st_mvar);
 
-      let gMW335 = parseNum(d335.gross_mw || (gtMW335 + stMW335));
-      let gMVAR335 = parseNum(d335.gross_mvar || (gtMVAR335 + stMVAR335));
-      teleData.p335 = gMW335;
+      let g335_mw = parseNum(p335.gross_mw || (gt335_mw + st335_mw));
+      let g335_mvar = parseNum(p335.gross_mvar || (gt335_mvar + st335_mvar));
 
-      document.getElementById('gt335_mw').innerText = gtMW335.toFixed(2);
-      document.getElementById('gt335_mvar').innerText = gtMVAR335.toFixed(2);
-      document.getElementById('gt335_pf').innerText = parseNum(d335.gt_pf || calcPF(gtMW335, gtMVAR335)).toFixed(2);
+      document.getElementById('gt335_mw').innerText = gt335_mw.toFixed(2);
+      document.getElementById('gt335_mvar').innerText = gt335_mvar.toFixed(2);
+      document.getElementById('gt335_pf').innerText = parseNum(p335.gt_pf || calcPF(gt335_mw, gt335_mvar)).toFixed(2);
 
-      document.getElementById('st335_mw').innerText = stMW335.toFixed(2);
-      document.getElementById('st335_mvar').innerText = stMVAR335.toFixed(2);
-      document.getElementById('st335_pf').innerText = parseNum(d335.st_pf || calcPF(stMW335, stMVAR335)).toFixed(2);
+      document.getElementById('st335_mw').innerText = st335_mw.toFixed(2);
+      document.getElementById('st335_mvar').innerText = st335_mvar.toFixed(2);
+      document.getElementById('st335_pf').innerText = parseNum(p335.st_pf || calcPF(st335_mw, st335_mvar)).toFixed(2);
 
-      document.getElementById('gross335_mw').innerText = gMW335.toFixed(2);
-      document.getElementById('gross335_mvar').innerText = gMVAR335.toFixed(2);
-      document.getElementById('gross335_pf').innerText = calcPF(gMW335, gMVAR335).toFixed(2);
+      document.getElementById('gross335_mw').innerText = g335_mw.toFixed(2);
+      document.getElementById('gross335_mvar').innerText = g335_mvar.toFixed(2);
+      document.getElementById('gross335_pf').innerText = calcPF(g335_mw, g335_mvar).toFixed(2);
 
-      document.getElementById('cap335_val').innerText = gMW335.toFixed(2);
-      let pct335 = (gMW335 / 335) * 100;
+      document.getElementById('cap335_val').innerText = g335_mw.toFixed(2);
+      let pct335 = (g335_mw / 335) * 100;
       document.getElementById('pct335').innerText = pct335.toFixed(1) + "%";
       document.getElementById('bar335_fill').style.width = Math.min(100, pct335) + "%";
 
-      let birdDP = parseNum(d335.birdscreen_dp || 0.83);
-      let mainDP = parseNum(d335.main_dp || 1.80);
-      let totalDP = parseNum(d335.total_dp || (birdDP + mainDP));
-
+      let birdDP = parseNum(p335.birdscreen_dp);
+      let mainDP = parseNum(p335.main_dp);
       document.getElementById('dp335_bird').innerText = birdDP.toFixed(2);
       document.getElementById('dp335_main').innerText = mainDP.toFixed(2);
-      document.getElementById('dp335_total').innerText = totalDP.toFixed(2);
+      document.getElementById('dp335_total').innerText = (birdDP + mainDP).toFixed(2);
 
-      let isRun335 = gMW335 >= 8.0;
+      let isRun335 = g335_mw >= 8.0;
       document.getElementById('st-335-pill').className = isRun335 ? "status-pill status-running" : "status-pill status-shutdown";
       document.getElementById('txt_335').innerText = isRun335 ? "Running" : "Shutdown";
       document.getElementById('hdr_dot_335').className = isRun335 ? "dot-st dot-run" : "dot-st dot-off";
@@ -563,34 +569,33 @@
       document.getElementById('hdr_txt_335').style.color = isRun335 ? "#dc2626" : "#16a34a";
 
       // 2. Plant 412
-      let d412 = data.plant_412 || {};
-      let gtMW412 = parseNum(d412.gt_mw || 275.60);
-      let gtMVAR412 = parseNum(d412.gt_mvar || 189.55);
-      let stMW412 = parseNum(d412.st_mw || 129.94);
-      let stMVAR412 = parseNum(d412.st_mvar || 24.08);
+      let p412 = liveState.plant_412;
+      let gt412_mw = parseNum(p412.gt_mw);
+      let gt412_mvar = parseNum(p412.gt_mvar);
+      let st412_mw = parseNum(p412.st_mw);
+      let st412_mvar = parseNum(p412.st_mvar);
 
-      let gMW412 = parseNum(d412.gross_mw || (gtMW412 + stMW412));
-      let gMVAR412 = parseNum(d412.gross_mvar || (gtMVAR412 + stMVAR412));
-      teleData.p412 = gMW412;
+      let g412_mw = parseNum(p412.gross_mw || (gt412_mw + st412_mw));
+      let g412_mvar = parseNum(p412.gross_mvar || (gt412_mvar + st412_mvar));
 
-      document.getElementById('gt412_mw').innerText = gtMW412.toFixed(2);
-      document.getElementById('gt412_mvar').innerText = gtMVAR412.toFixed(2);
-      document.getElementById('gt412_pf').innerText = calcPF(gtMW412, gtMVAR412).toFixed(2);
+      document.getElementById('gt412_mw').innerText = gt412_mw.toFixed(2);
+      document.getElementById('gt412_mvar').innerText = gt412_mvar.toFixed(2);
+      document.getElementById('gt412_pf').innerText = calcPF(gt412_mw, gt412_mvar).toFixed(2);
 
-      document.getElementById('st412_mw').innerText = stMW412.toFixed(2);
-      document.getElementById('st412_mvar').innerText = stMVAR412.toFixed(2);
-      document.getElementById('st412_pf').innerText = calcPF(stMW412, stMVAR412).toFixed(2);
+      document.getElementById('st412_mw').innerText = st412_mw.toFixed(2);
+      document.getElementById('st412_mvar').innerText = st412_mvar.toFixed(2);
+      document.getElementById('st412_pf').innerText = calcPF(st412_mw, st412_mvar).toFixed(2);
 
-      document.getElementById('gross412_mw').innerText = gMW412.toFixed(2);
-      document.getElementById('gross412_mvar').innerText = gMVAR412.toFixed(2);
-      document.getElementById('gross412_pf').innerText = calcPF(gMW412, gMVAR412).toFixed(2);
+      document.getElementById('gross412_mw').innerText = g412_mw.toFixed(2);
+      document.getElementById('gross412_mvar').innerText = g412_mvar.toFixed(2);
+      document.getElementById('gross412_pf').innerText = calcPF(g412_mw, g412_mvar).toFixed(2);
 
-      document.getElementById('cap412_val').innerText = gMW412.toFixed(2);
-      let pct412 = (gMW412 / 412) * 100;
+      document.getElementById('cap412_val').innerText = g412_mw.toFixed(2);
+      let pct412 = (g412_mw / 412) * 100;
       document.getElementById('pct412').innerText = pct412.toFixed(1) + "%";
       document.getElementById('bar412_fill').style.width = Math.min(100, pct412) + "%";
 
-      let isRun412 = gMW412 >= 8.0;
+      let isRun412 = g412_mw >= 8.0;
       document.getElementById('st-412-pill').className = isRun412 ? "status-pill status-running" : "status-pill status-shutdown";
       document.getElementById('txt_412').innerText = isRun412 ? "Running" : "Shutdown";
       document.getElementById('hdr_dot_412').className = isRun412 ? "dot-st dot-run" : "dot-st dot-off";
@@ -598,69 +603,115 @@
       document.getElementById('hdr_txt_412').style.color = isRun412 ? "#dc2626" : "#16a34a";
 
       // 3. Plant 120
-      let d120 = data.plant_120 || {};
-      let gt1MW = parseNum(d120.gt1_mw || 0.74);
-      let gt1MVAR = parseNum(d120.gt1_mvar || 0.25);
-      let gt2MW = parseNum(d120.gt2_mw || 0.25);
-      let gt2MVAR = parseNum(d120.gt2_mvar || -0.87);
+      let p120 = liveState.plant_120;
+      let gt1_mw = parseNum(p120.gt1_mw);
+      let gt1_mvar = parseNum(p120.gt1_mvar);
+      let gt2_mw = parseNum(p120.gt2_mw);
+      let gt2_mvar = parseNum(p120.gt2_mvar);
 
-      let gMW120 = parseNum(d120.gross_mw || (gt1MW + gt2MW));
-      let gMVAR120 = parseNum(d120.gross_mvar || (gt1MVAR + gt2MVAR));
-      teleData.p120 = gMW120;
+      let g120_mw = parseNum(p120.gross_mw || (gt1_mw + gt2_mw));
+      let g120_mvar = parseNum(p120.gross_mvar || (gt1_mvar + gt2_mvar));
 
-      document.getElementById('gt1_mw').innerText = gt1MW.toFixed(2);
-      document.getElementById('gt1_mvar').innerText = gt1MVAR.toFixed(2);
-      document.getElementById('pf_gt1').innerText = calcPF(gt1MW, gt1MVAR).toFixed(2);
+      document.getElementById('gt1_mw').innerText = gt1_mw.toFixed(2);
+      document.getElementById('gt1_mvar').innerText = gt1_mvar.toFixed(2);
+      document.getElementById('pf_gt1').innerText = calcPF(gt1_mw, gt1_mvar).toFixed(2);
 
-      document.getElementById('gt2_mw').innerText = gt2MW.toFixed(2);
-      document.getElementById('gt2_mvar').innerText = gt2MVAR.toFixed(2);
-      document.getElementById('pf_gt2').innerText = calcPF(gt2MW, gt2MVAR).toFixed(2);
+      document.getElementById('gt2_mw').innerText = gt2_mw.toFixed(2);
+      document.getElementById('gt2_mvar').innerText = gt2_mvar.toFixed(2);
+      document.getElementById('pf_gt2').innerText = calcPF(gt2_mw, gt2_mvar).toFixed(2);
 
-      document.getElementById('gross120_mw').innerText = gMW120.toFixed(2);
-      document.getElementById('gross120_mvar').innerText = gMVAR120.toFixed(2);
-      document.getElementById('gross120_pf').innerText = calcPF(gMW120, gMVAR120).toFixed(2);
+      document.getElementById('gross120_mw').innerText = g120_mw.toFixed(2);
+      document.getElementById('gross120_mvar').innerText = g120_mvar.toFixed(2);
+      document.getElementById('gross120_pf').innerText = calcPF(g120_mw, g120_mvar).toFixed(2);
 
-      document.getElementById('cap120_val').innerText = gMW120.toFixed(2);
-      let pct120 = (gMW120 / 240) * 100;
+      document.getElementById('cap120_val').innerText = g120_mw.toFixed(2);
+      let pct120 = (g120_mw / 240) * 100;
       document.getElementById('pct120').innerText = pct120.toFixed(1) + "%";
       document.getElementById('bar120_fill').style.width = Math.min(100, pct120) + "%";
 
-      let isRun120 = gMW120 >= 8.0;
+      let isRun120 = g120_mw >= 8.0;
       document.getElementById('st-120-pill').className = isRun120 ? "status-pill status-running" : "status-pill status-shutdown";
       document.getElementById('txt_120').innerText = isRun120 ? "Running" : "Shutdown";
       document.getElementById('hdr_dot_120').className = isRun120 ? "dot-st dot-run" : "dot-st dot-off";
       document.getElementById('hdr_txt_120').innerText = isRun120 ? "Running" : "Shutdown";
       document.getElementById('hdr_txt_120').style.color = isRun120 ? "#dc2626" : "#16a34a";
 
-      // Total Active Generation
-      let total = teleData.p335 + teleData.p412 + teleData.p120;
-      document.getElementById('total_mw_val').innerText = total.toFixed(2);
+      // Summary Header Active MW
+      document.getElementById('total_mw_val').innerText = (g335_mw + g412_mw + g120_mw).toFixed(2);
 
-      // SCADA Chart Live Update
+      // Record logs for CSV export
+      history335.push({ time: nowStr, gross_mw: g335_mw, gt_mw: gt335_mw, st_mw: st335_mw });
+      history412.push({ time: nowStr, gross_mw: g412_mw, gt_mw: gt412_mw, st_mw: st412_mw });
+      history120.push({ time: nowStr, gross_mw: g120_mw, gt1_mw: gt1_mw, gt2_mw: gt2_mw });
+
+      // Update Chart Live Point
       if (chart) {
-        let lastIdx = chart.data.datasets[0].data.length - 1;
-        chart.data.datasets[0].data[lastIdx] = teleData.p335;
-        chart.data.datasets[1].data[lastIdx] = teleData.p120;
-        chart.data.datasets[2].data[lastIdx] = teleData.p412;
-        chart.update();
+        let datasets = chart.data.datasets;
+        let lastIdx = chart.data.labels.length - 1;
+
+        datasets[0].data[lastIdx] = g335_mw;
+        datasets[1].data[lastIdx] = g120_mw;
+        datasets[2].data[lastIdx] = g412_mw;
+
+        // Dynamic Stats Box Updates
+        let d335Data = datasets[0].data;
+        let d120Data = datasets[1].data;
+        let d412Data = datasets[2].data;
+
+        document.getElementById('max-335').innerText = Math.max(...d335Data).toFixed(1);
+        document.getElementById('min-335').innerText = Math.min(...d335Data).toFixed(1);
+        document.getElementById('stat_st_335').innerText = isRun335 ? "● Running" : "● Shutdown";
+        document.getElementById('stat_st_335').style.color = isRun335 ? "#dc2626" : "#16a34a";
+
+        document.getElementById('max-120').innerText = Math.max(...d120Data).toFixed(1);
+        document.getElementById('min-120').innerText = Math.min(...d120Data).toFixed(1);
+        document.getElementById('stat_st_120').innerText = isRun120 ? "● Running" : "● Shutdown";
+        document.getElementById('stat_st_120').style.color = isRun120 ? "#dc2626" : "#16a34a";
+
+        document.getElementById('max-412').innerText = Math.max(...d412Data).toFixed(1);
+        document.getElementById('min-412').innerText = Math.min(...d412Data).toFixed(1);
+        document.getElementById('stat_st_412').innerText = isRun412 ? "● Running" : "● Shutdown";
+        document.getElementById('stat_st_412').style.color = isRun412 ? "#dc2626" : "#16a34a";
+
+        chart.update('none');
       }
     }
 
-    function startRealtimeDatabase() {
-      db.ref().on('value', (snapshot) => {
-        if (snapshot.exists()) {
-          updateUIWithData(snapshot.val());
-        } else {
-          updateUIWithData({});
-        }
-      });
+    // Export Functionality
+    function exportPlantCSV(plantName) {
+      let records = [];
+      let filename = `${plantName}_Telemetry_${new Date().toISOString().slice(0,10)}.csv`;
+
+      if (plantName === '335MW') records = history335;
+      else if (plantName === '412MW') records = history412;
+      else if (plantName === '120MW') records = history120;
+
+      if (records.length === 0) {
+        alert("No telemetry history available to export yet.");
+        return;
+      }
+
+      let keys = Object.keys(records[0]);
+      let csvContent = "data:text/csv;charset=utf-8," 
+        + keys.join(",") + "\n"
+        + records.map(r => keys.map(k => r[k]).join(",")).join("\n");
+
+      let encodedUri = encodeURI(csvContent);
+      let link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
+    // Realtime Clock
     setInterval(() => {
       const el = document.getElementById('timestamp_val');
       if (el) el.innerText = new Date().toLocaleString();
     }, 1000);
 
+    // Initialize Chart matching chart.html styling
     function initChart() {
       if (chart) return;
       const ctx = document.getElementById('scadaChart').getContext('2d');
@@ -669,17 +720,51 @@
         data: {
           labels: ['07:07', '09:50', '11:30', '13:10', '14:51', '17:01', '18:41', '20:21', '00:37', '02:17', '03:58', '05:38', '07:18', '08:58', '10:38'],
           datasets: [
-            { label: '335MW CCPP', borderColor: '#0284c7', backgroundColor: 'rgba(2, 132, 199, 0.05)', borderWidth: 2.5, pointRadius: 0, data: [310, 315, 290, 340, 320, 335, 325, 340, 320, 325, 322, 328, 315, 325, teleData.p335], fill: true, tension: 0.3 },
-            { label: '2x120 MW PPP', borderColor: '#16a34a', backgroundColor: 'rgba(22, 163, 74, 0.05)', borderWidth: 2.5, pointRadius: 0, data: [205, 140, 200, 210, 205, 208, 210, 50, 0, 0, 0, 0, 0, 0, teleData.p120], fill: true, tension: 0.3 },
-            { label: '412 MW CCPP', borderColor: '#dc2626', backgroundColor: 'rgba(220, 38, 38, 0.05)', borderWidth: 2.5, pointRadius: 0, data: [0, 0, 0, 0, 0, 0, 0, 200, 210, 430, 435, 370, 415, 360, teleData.p412], fill: true, tension: 0.3 }
+            {
+              label: '335MW CCPP',
+              borderColor: '#0284c7',
+              backgroundColor: 'rgba(2, 132, 199, 0.08)',
+              borderWidth: 2.5,
+              pointRadius: 0,
+              data: [310, 315, 290, 340, 320, 335, 325, 340, 320, 325, 322, 328, 315, 325, 330.06],
+              fill: true,
+              tension: 0.35
+            },
+            {
+              label: '2x120 MW PPP',
+              borderColor: '#16a34a',
+              backgroundColor: 'rgba(22, 163, 74, 0.08)',
+              borderWidth: 2.5,
+              pointRadius: 0,
+              data: [205, 140, 200, 210, 205, 208, 210, 50, 0, 0, 0, 0, 0, 0, 0.99],
+              fill: true,
+              tension: 0.35
+            },
+            {
+              label: '412 MW CCPP',
+              borderColor: '#dc2626',
+              backgroundColor: 'rgba(220, 38, 38, 0.08)',
+              borderWidth: 2.5,
+              pointRadius: 0,
+              data: [0, 0, 0, 0, 0, 0, 0, 200, 210, 430, 435, 370, 415, 360, 405.54],
+              fill: true,
+              tension: 0.35
+            }
           ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 10, weight: 'bold' } } },
+            zoom: {
+              pan: { enabled: true, mode: 'x' },
+              zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' }
+            }
+          },
           scales: {
-            x: { ticks: { font: { size: 10 } } },
-            y: { beginAtZero: true, max: 450, ticks: { font: { size: 10 } } }
+            x: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 9.5 } } },
+            y: { beginAtZero: true, max: 450, grid: { color: '#e2e8f0' }, ticks: { font: { size: 9.5 } } }
           }
         }
       });
