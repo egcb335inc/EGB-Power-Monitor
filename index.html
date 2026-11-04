@@ -179,7 +179,7 @@
       gap: 6px;
     }
 
-    /* Plant Card Styles (Plant_card.html) */
+    /* Plant Card Header */
     .plant-header {
       display: flex;
       justify-content: space-between;
@@ -365,7 +365,7 @@
     @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.4; } 100% { transform: scale(0.9); opacity: 1; } }
 
     #header-panel { background: #ffffff; border: 1px solid #dcdfe3; border-radius: 8px; padding: 6px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); flex-shrink: 0; }
-    .stats-row { display: flex; justify-content: space-around; align-items: center; }
+    .stats-row { display: flex; justify-style: space-around; align-items: center; }
     .stat-badge { flex: 1; margin: 0 3px; padding: 5px 4px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
     .title-335 { font-size: 11px; font-weight: 800; color: #1976d2; }
     .title-120 { font-size: 11px; font-weight: 800; color: #2e7d32; }
@@ -461,7 +461,7 @@
     <!-- 4 COLUMNS -->
     <div class="dashboard-grid">
 
-      <!-- COL 1: SIDDHIRGANJ 335 MW CCPP (INTEGRATED PLANT_CARD.HTML) -->
+      <!-- COL 1: SIDDHIRGANJ 335 MW CCPP -->
       <div class="col-card">
         
         <!-- Header Banner -->
@@ -489,41 +489,27 @@
 
           <!-- Export Dropdown -->
           <div class="dropdown-container">
-            <button id="btn-export-main" class="btn-export-main" onclick="toggleExportMenu(event)">
+            <button id="btn-export-335" class="btn-export-main" onclick="toggleExportMenu335(event)">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                 <polyline points="16 6 12 2 8 6"></polyline>
                 <line x1="12" y1="2" x2="12" y2="15"></line>
               </svg>
-              <span id="export-btn-label">Export Data</span>
+              <span id="export-btn-label-335">Export Data</span>
               <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
             </button>
 
-            <div id="export-menu" class="export-menu">
-              <!-- Option 1: FGMO -->
+            <div id="export-menu-335" class="export-menu">
               <button class="menu-item" onclick="exportData335('fgmo')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                </svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
                 <span>FGMO</span>
               </button>
-              
-              <!-- Option 2: Partial Load -->
               <button class="menu-item" onclick="exportData335('partial')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                </svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 <span>Partial Load</span>
               </button>
-
-              <!-- Option 3: Full Load -->
               <button class="menu-item" onclick="exportData335('full')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 <span>Full Load</span>
               </button>
             </div>
@@ -670,50 +656,174 @@
 
       </div>
 
-      <!-- COL 2: HARIPUR 412 MW CCPP -->
+      <!-- COL 2: HARIPUR 412 MW CCPP (INTEGRATED PLANT_CARD_412.HTML) -->
       <div class="col-card">
+        
+        <!-- Header Banner with 65x65 Circular Image -->
         <div class="plant-header">
           <div class="plant-header-left">
-            <img src="412MW.png" class="plant-img" alt="412">
+            <img src="412MW.png" class="plant-img" alt="Haripur 412 MW CCPP">
             <div class="plant-title">Haripur 412 MW CCPP</div>
           </div>
-          <div id="st-412-pill" class="status-pill status-shutdown"><span id="txt_412">Shutdown</span></div>
+          <div id="st-412-pill" class="status-pill status-shutdown">
+            <span id="plant-dot-412" class="status-dot dot-shutdown"></span>
+            <span id="txt_412">Shutdown</span>
+          </div>
         </div>
 
+        <!-- Action Control Bar -->
         <div class="action-control-bar">
           <div class="capacity-gauge-box">
-            <div class="gauge-header">Generation: <strong id="cap412_val" style="color:#15803d;">0.00</strong>/412 MW (<span id="pct412">0.0%</span>)</div>
-            <div class="gauge-bar-track"><div id="bar412_fill" class="gauge-bar-fill"></div></div>
+            <div class="gauge-header">
+              <span class="gauge-text-label">Generation: </span><strong id="live_gross_cap_412" style="color:#15803d; font-weight:900;">0.00</strong>/412 MW (<strong id="cap_pct_412" style="color:#0284c7; font-weight:900;">0.0%</strong>)
+            </div>
+            <div class="gauge-bar-track">
+              <div id="bar412_fill" class="gauge-bar-fill" style="width: 0%;"></div>
+            </div>
           </div>
-          <button class="btn-export-main" onclick="exportPlantCSV('412MW')">Export Data</button>
+
+          <!-- Export Dropdown Button -->
+          <div class="dropdown-container">
+            <button id="btn-export-412" class="btn-export-main" onclick="toggleExportMenu412(event)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                <polyline points="16 6 12 2 8 6"></polyline>
+                <line x1="12" y1="2" x2="12" y2="15"></line>
+              </svg>
+              <span id="export-btn-label-412">Export Data</span>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+
+            <div id="export-menu-412" class="export-menu">
+              <!-- Option 1: FGMO -->
+              <button class="menu-item" onclick="exportData412('fgmo')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                </svg>
+                <span>FGMO</span>
+              </button>
+              
+              <!-- Option 2: Partial Load -->
+              <button class="menu-item" onclick="exportData412('partial')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Partial Load</span>
+              </button>
+
+              <!-- Option 3: Full Load -->
+              <button class="menu-item" onclick="exportData412('full')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>Full Load</span>
+              </button>
+            </div>
+          </div>
         </div>
 
+        <!-- 1. Gas Turbine Section -->
         <div class="unit-card">
-          <div class="unit-title-row"><span class="section-title title-gt">⚙️ Gas Turbine</span></div>
+          <div class="unit-title-row">
+            <div class="badge-icon-box badge-gt">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="section-title title-gt">Gas Turbine</div>
+          </div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gt412_mw">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gt412_mvar">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gt412_pf">0.00</span></div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <span class="param-label-text">Active Power (MW)</span>
+              </div>
+              <div class="param-value-text val-mw"><span id="gt412_mw">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <span class="param-label-text">Reactive Power (MVAR)</span>
+              </div>
+              <div class="param-value-text val-mvar"><span id="gt412_mvar">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><div class="pf-badge">PF</div></div>
+                <span class="param-label-text">Power Factor</span>
+              </div>
+              <div class="param-value-text val-pf" id="gt412_pf">0.00</div>
+            </div>
           </div>
         </div>
 
+        <!-- 2. Steam Turbine Section -->
         <div class="unit-card card-st">
-          <div class="unit-title-row"><span class="section-title title-st">⚙️ Steam Turbine</span></div>
+          <div class="unit-title-row">
+            <div class="badge-icon-box badge-st">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="section-title title-st">Steam Turbine</div>
+          </div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="st412_mw">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="st412_mvar">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="st412_pf">0.00</span></div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <span class="param-label-text">Active Power (MW)</span>
+              </div>
+              <div class="param-value-text val-mw"><span id="st412_mw">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <span class="param-label-text">Reactive Power (MVAR)</span>
+              </div>
+              <div class="param-value-text val-mvar"><span id="st412_mvar">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><div class="pf-badge">PF</div></div>
+                <span class="param-label-text">Power Factor</span>
+              </div>
+              <div class="param-value-text val-pf" id="st412_pf">0.00</div>
+            </div>
           </div>
         </div>
 
+        <!-- 3. Gross CCPP Output Section -->
         <div class="unit-card card-gross">
-          <div class="unit-title-row"><span class="section-title title-gross">🏭 Gross CCPP Output</span></div>
+          <div class="unit-title-row">
+            <div class="badge-icon-box badge-gross">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
+            </div>
+            <div class="section-title title-gross">Gross CCPP Output</div>
+          </div>
           <div class="param-list">
-            <div class="param-row"><span class="param-label-text">⚡ Active Power (MW)</span><span class="param-value-text val-mw" id="gross412_mw">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">〰️ Reactive Power (MVAR)</span><span class="param-value-text val-mvar" id="gross412_mvar">0.00</span></div>
-            <div class="param-row"><span class="param-label-text">PF Power Factor</span><span class="param-value-text val-pf" id="gross412_pf">0.00</span></div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <span class="param-label-text">Active Power (MW)</span>
+              </div>
+              <div class="param-value-text val-mw"><span id="gross412_mw">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <span class="param-label-text">Reactive Power (MVAR)</span>
+              </div>
+              <div class="param-value-text val-mvar"><span id="gross412_mvar">0.00</span></div>
+            </div>
+            <div class="param-row">
+              <div class="param-label-group">
+                <div class="param-icon-box"><div class="pf-badge">PF</div></div>
+                <span class="param-label-text">Power Factor</span>
+              </div>
+              <div class="param-value-text val-pf" id="gross412_pf">0.00</div>
+            </div>
           </div>
         </div>
+
       </div>
 
       <!-- COL 3: SIDDHIRGANJ 2x120 MW PPP -->
@@ -926,36 +1036,41 @@
       });
     }
 
-    // Toggle 335MW Export Dropdown
-    function toggleExportMenu(e) {
+    // Toggle Export Popovers
+    function toggleExportMenu335(e) {
       if (e) e.stopPropagation();
-      const menu = document.getElementById('export-menu');
-      menu.classList.toggle('show');
+      document.getElementById('export-menu-412').classList.remove('show');
+      document.getElementById('export-menu-335').classList.toggle('show');
+    }
+
+    function toggleExportMenu412(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('export-menu-335').classList.remove('show');
+      document.getElementById('export-menu-412').classList.toggle('show');
     }
 
     document.addEventListener('click', function(e) {
-      const menu = document.getElementById('export-menu');
-      const btn = document.getElementById('btn-export-main');
-      if (menu && !menu.contains(e.target) && !btn.contains(e.target)) {
-        menu.classList.remove('show');
+      const menu335 = document.getElementById('export-menu-335');
+      const btn335 = document.getElementById('btn-export-335');
+      if (menu335 && !menu335.contains(e.target) && !btn335.contains(e.target)) {
+        menu335.classList.remove('show');
+      }
+
+      const menu412 = document.getElementById('export-menu-412');
+      const btn412 = document.getElementById('btn-export-412');
+      if (menu412 && !menu412.contains(e.target) && !btn412.contains(e.target)) {
+        menu412.classList.remove('show');
       }
     });
 
-    // 335MW Text Copy & Share Export Logic
+    // 335MW Copy & Share Export Logic
     function exportData335(type) {
       const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const mins = String(now.getMinutes()).padStart(2, '0');
-      const timeStr = `${hours}:${mins} HR`;
-      
-      const day = String(now.getDate()).padStart(2, '0');
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const year = now.getFullYear();
-      const dateStr = `${day}.${month}.${year}`;
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} HR`;
+      const dateStr = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
 
       const gtMW = Math.round(parseVal(document.getElementById('gt335_mw').innerText));
       const gtMVAR = Math.round(parseVal(document.getElementById('gt335_mvar').innerText));
-      
       const stMW = Math.round(parseVal(document.getElementById('st335_mw').innerText));
       const stMVAR = Math.round(parseVal(document.getElementById('st335_mvar').innerText));
       
@@ -963,28 +1078,50 @@
       const totalMVAR = gtMVAR + stMVAR;
 
       let demandLine = "As per NLDC demand.";
-      if (type === 'fgmo') {
-        demandLine = "As per NLDC Demand(FGMO).";
-      } else if (type === 'full') {
-        demandLine = "NLDC Demand is full.";
-      }
+      if (type === 'fgmo') demandLine = "As per NLDC Demand(FGMO).";
+      else if (type === 'full') demandLine = "NLDC Demand is full.";
 
       const textToShare = `${timeStr}\nGT: ${gtMW} MW/ ${gtMVAR} MVAR\nST: ${stMW} MW/ ${stMVAR} MVAR\nTotal: ${totalMW} MW/ ${totalMVAR} MVAR\n${demandLine}\nDate: ${dateStr}\nSiddhirganj 335 MW CCPP`;
 
-      copyTextToClipboard(textToShare);
+      copyTextToClipboard(textToShare, 'export-btn-label-335');
 
-      if (window.AppInventor) {
-        window.AppInventor.setWebViewString("SHARE|" + textToShare);
-      } else if (navigator.share) {
-        navigator.share({ title: 'Siddhirganj 335 MW CCPP', text: textToShare }).catch(() => {});
-      }
+      if (window.AppInventor) window.AppInventor.setWebViewString("SHARE|" + textToShare);
+      else if (navigator.share) navigator.share({ title: 'Siddhirganj 335 MW CCPP', text: textToShare }).catch(() => {});
 
-      document.getElementById('export-menu').classList.remove('show');
+      document.getElementById('export-menu-335').classList.remove('show');
     }
 
-    function copyTextToClipboard(text) {
+    // 412MW Copy & Share Export Logic
+    function exportData412(type) {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} HR`;
+      const dateStr = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
+
+      const gtMW = Math.round(parseVal(document.getElementById('gt412_mw').innerText));
+      const gtMVAR = Math.round(parseVal(document.getElementById('gt412_mvar').innerText));
+      const stMW = Math.round(parseVal(document.getElementById('st412_mw').innerText));
+      const stMVAR = Math.round(parseVal(document.getElementById('st412_mvar').innerText));
+      
+      const totalMW = gtMW + stMW;
+      const totalMVAR = gtMVAR + stMVAR;
+
+      let demandLine = "As per NLDC demand.";
+      if (type === 'fgmo') demandLine = "As per NLDC Demand(FGMO).";
+      else if (type === 'full') demandLine = "NLDC Demand is full.";
+
+      const textToShare = `${timeStr}\nGT: ${gtMW} MW/ ${gtMVAR} MVAR\nST: ${stMW} MW/ ${stMVAR} MVAR\nTotal: ${totalMW} MW/ ${totalMVAR} MVAR\n${demandLine}\nDate: ${dateStr}\nHaripur 412 MW CCPP`;
+
+      copyTextToClipboard(textToShare, 'export-btn-label-412');
+
+      if (window.AppInventor) window.AppInventor.setWebViewString("SHARE|" + textToShare);
+      else if (navigator.share) navigator.share({ title: 'Haripur 412 MW CCPP', text: textToShare }).catch(() => {});
+
+      document.getElementById('export-menu-412').classList.remove('show');
+    }
+
+    function copyTextToClipboard(text, labelId) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showFeedback());
+        navigator.clipboard.writeText(text).then(() => showFeedback(labelId));
       } else {
         const textArea = document.createElement("textarea");
         textArea.value = text;
@@ -992,12 +1129,12 @@
         textArea.select();
         document.execCommand("copy");
         document.body.removeChild(textArea);
-        showFeedback();
+        showFeedback(labelId);
       }
     }
 
-    function showFeedback() {
-      const exportLabel = document.getElementById('export-btn-label');
+    function showFeedback(labelId) {
+      const exportLabel = document.getElementById(labelId);
       if (exportLabel) exportLabel.innerText = 'Shared & Copied!';
       setTimeout(() => {
         if (exportLabel) exportLabel.innerText = 'Export Data';
@@ -1034,10 +1171,8 @@
       document.getElementById('cap_pct_335').innerText = pct335.toFixed(1) + "%";
       document.getElementById('bar335_fill').style.width = Math.min(100, pct335) + "%";
 
-      // DP Calculations (+0.06 offset for Birdscreen, +0.09 offset for Main Filter)
       let birdDP_raw = parseVal(p335.birdscreen_dp);
       let mainDP_raw = parseVal(p335.main_dp);
-
       let birdDP = birdDP_raw + 0.06;
       let mainDP = mainDP_raw + 0.09;
       let totalDP = p335.total_dp !== undefined ? (parseVal(p335.total_dp) + 0.15) : (birdDP + mainDP);
@@ -1058,35 +1193,40 @@
       document.getElementById('hdr_txt_335').innerText = isRun335 ? "Running" : "Shutdown";
       document.getElementById('hdr_txt_335').style.color = isRun335 ? "#dc2626" : "#16a34a";
 
-      // 2. Plant 412 Update
+      // 2. Plant 412 Update (Integrated from plant_card_412.html)
       let p412 = liveState.plant_412;
       let gt412_mw = parseVal(p412.gt_mw);
       let gt412_mvar = parseVal(p412.gt_mvar);
       let st412_mw = parseVal(p412.st_mw);
       let st412_mvar = parseVal(p412.st_mvar);
 
+      let gt412_pf = calcPF(gt412_mw, gt412_mvar);
+      let st412_pf = calcPF(st412_mw, st412_mvar);
+
       let g412_mw = parseVal(p412.gross_mw || (gt412_mw + st412_mw));
       let g412_mvar = parseVal(p412.gross_mvar || (gt412_mvar + st412_mvar));
+      let g412_pf = calcPF(g412_mw, g412_mvar);
 
       document.getElementById('gt412_mw').innerText = gt412_mw.toFixed(2);
       document.getElementById('gt412_mvar').innerText = gt412_mvar.toFixed(2);
-      document.getElementById('gt412_pf').innerText = calcPF(gt412_mw, gt412_mvar).toFixed(2);
+      document.getElementById('gt412_pf').innerText = gt412_pf.toFixed(2);
 
       document.getElementById('st412_mw').innerText = st412_mw.toFixed(2);
       document.getElementById('st412_mvar').innerText = st412_mvar.toFixed(2);
-      document.getElementById('st412_pf').innerText = calcPF(st412_mw, st412_mvar).toFixed(2);
+      document.getElementById('st412_pf').innerText = st412_pf.toFixed(2);
 
       document.getElementById('gross412_mw').innerText = g412_mw.toFixed(2);
       document.getElementById('gross412_mvar').innerText = g412_mvar.toFixed(2);
-      document.getElementById('gross412_pf').innerText = calcPF(g412_mw, g412_mvar).toFixed(2);
+      document.getElementById('gross412_pf').innerText = g412_pf.toFixed(2);
 
-      document.getElementById('cap412_val').innerText = g412_mw.toFixed(2);
-      let pct412 = (g412_mw / 412) * 100;
-      document.getElementById('pct412').innerText = pct412.toFixed(1) + "%";
+      document.getElementById('live_gross_cap_412').innerText = g412_mw.toFixed(2);
+      let pct412 = (g412_mw / 412.0) * 100;
+      document.getElementById('cap_pct_412').innerText = pct412.toFixed(1) + "%";
       document.getElementById('bar412_fill').style.width = Math.min(100, pct412) + "%";
 
       let isRun412 = g412_mw >= 8.0;
       document.getElementById('st-412-pill').className = isRun412 ? "status-pill status-running" : "status-pill status-shutdown";
+      document.getElementById('plant-dot-412').className = isRun412 ? "status-dot dot-running" : "status-dot dot-shutdown";
       document.getElementById('txt_412').innerText = isRun412 ? "Running" : "Shutdown";
       document.getElementById('hdr_dot_412').className = isRun412 ? "dot-st dot-run" : "dot-st dot-off";
       document.getElementById('hdr_txt_412').innerText = isRun412 ? "Running" : "Shutdown";
@@ -1172,7 +1312,7 @@
       }
     }
 
-    // Export CSV Data for Haripur and 120MW
+    // Export CSV Data for 120MW
     function exportPlantCSV(plantName) {
       let now = new Date();
       let dateStr = now.toISOString().slice(0, 10);
@@ -1181,8 +1321,7 @@
 
       if (historyLogs.length > 0) {
         historyLogs.forEach(row => {
-          if (plantName === '412MW') csvRows.push(`"${row.time}","412 MW CCPP",${row.plant_412_mw},${document.getElementById('gt412_mw').innerText},${document.getElementById('st412_mw').innerText},${document.getElementById('gross412_mvar').innerText}`);
-          else if (plantName === '120MW') csvRows.push(`"${row.time}","2x120 MW PPP",${row.plant_120_mw},${document.getElementById('gt1_mw').innerText},${document.getElementById('gt2_mw').innerText},${document.getElementById('gross120_mvar').innerText}`);
+          if (plantName === '120MW') csvRows.push(`"${row.time}","2x120 MW PPP",${row.plant_120_mw},${document.getElementById('gt1_mw').innerText},${document.getElementById('gt2_mw').innerText},${document.getElementById('gross120_mvar').innerText}`);
         });
       }
 
