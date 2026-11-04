@@ -34,7 +34,7 @@
       --red-alert: #dc2626;
 
       --border-color: #cbd5e1;
-      --label-muted: #475569;
+      --label-muted: #334155;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,8 +65,8 @@
     }
 
     .logo-img {
-      width: clamp(40px, 4.5vh, 60px);
-      height: clamp(40px, 4.5vh, 60px);
+      width: clamp(42px, 4.8vh, 62px);
+      height: clamp(42px, 4.8vh, 62px);
       border-radius: 50%;
       object-fit: contain;
       background: #ffffff;
@@ -77,17 +77,17 @@
     }
 
     .title-box { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
-    .company-title { font-size: clamp(14px, 1.8vh, 19px); font-weight: 900; letter-spacing: 0.4px; color: #ffffff; text-transform: uppercase; line-height: 1.2; }
-    .ministry-title { font-size: clamp(10px, 1.3vh, 13px); font-weight: 700; color: var(--accent-cyan); margin-top: 2px; }
-    .tagline-banner { background: #1e293b; color: var(--accent-gold); font-size: 11px; font-weight: 700; text-align: center; padding: 4px; border-bottom: 1px solid #334155; flex-shrink: 0; }
+    .company-title { font-size: clamp(15px, 2vh, 21px); font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; line-height: 1.2; }
+    .ministry-title { font-size: clamp(11px, 1.4vh, 14px); font-weight: 700; color: var(--accent-cyan); margin-top: 2px; }
+    .tagline-banner { background: #1e293b; color: var(--accent-gold); font-size: 12px; font-weight: 700; text-align: center; padding: 4px; border-bottom: 1px solid #334155; flex-shrink: 0; }
     
     .main-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 15px; background: linear-gradient(rgba(241, 245, 249, 0.88), rgba(241, 245, 249, 0.94)), url('bd_map.png') center/contain no-repeat; }
     .login-card { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 24px 20px; width: 100%; max-width: 380px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12); display: flex; flex-direction: column; gap: 14px; }
-    .welcome-title-animated { font-size: 15px; font-weight: 900; text-align: center; text-transform: uppercase; color: #0f172a; }
+    .welcome-title-animated { font-size: 16px; font-weight: 900; text-align: center; text-transform: uppercase; color: #0f172a; }
     .input-group { display: flex; flex-direction: column; gap: 4px; }
-    .input-label { font-size: 12px; font-weight: 700; color: #334155; }
-    .input-box { width: 100%; padding: 10px; font-size: 13px; color: #0f172a; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; outline: none; }
-    .btn-submit { background: var(--btn-red); color: #ffffff; border: none; border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 800; cursor: pointer; }
+    .input-label { font-size: 13px; font-weight: 700; color: #334155; }
+    .input-box { width: 100%; padding: 10px; font-size: 14px; color: #0f172a; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; outline: none; }
+    .btn-submit { background: var(--btn-red); color: #ffffff; border: none; border-radius: 10px; padding: 10px; font-size: 15px; font-weight: 800; cursor: pointer; }
 
     /* Dashboard Shell */
     #page-dashboard { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
@@ -95,7 +95,7 @@
     .dashboard-header-bar {
       background: var(--header-bg);
       color: #ffffff;
-      padding: clamp(4px, 0.8vh, 8px) 12px;
+      padding: clamp(5px, 0.9vh, 9px) 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -107,26 +107,26 @@
       background: #ffffff;
       border-bottom: 1.5px solid #cbd5e1;
       display: grid;
-      grid-template-columns: 200px 1fr 240px;
+      grid-template-columns: 220px 1fr 260px;
       align-items: center;
-      padding: clamp(3px, 0.6vh, 6px) 12px;
+      padding: clamp(3px, 0.6vh, 6px) 14px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
       flex-shrink: 0;
     }
 
-    .mw-total-badge { font-weight: 800; font-size: clamp(11px, 1.4vh, 14px); color: #1e293b; display: flex; align-items: center; gap: 6px; }
-    .mw-val-text { font-size: clamp(15px, 2vh, 20px); font-weight: 900; color: #15803d; font-family: var(--font-aptos); width: 80px; display: inline-block; }
+    .mw-total-badge { font-weight: 800; font-size: clamp(12px, 1.5vh, 15px); color: #1e293b; display: flex; align-items: center; gap: 6px; }
+    .mw-val-text { font-size: clamp(17px, 2.2vh, 22px); font-weight: 900; color: #15803d; font-family: var(--font-aptos); width: 90px; display: inline-block; }
     
     .status-summary-group { 
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      gap: clamp(12px, 2vw, 24px); 
-      font-size: clamp(11px, 1.3vh, 13px); 
+      gap: clamp(14px, 2.2vw, 28px); 
+      font-size: clamp(12px, 1.4vh, 14.5px); 
       font-weight: 800; 
     }
     
-    .status-item { display: flex; align-items: center; gap: 5px; }
+    .status-item { display: flex; align-items: center; gap: 6px; }
 
     @keyframes pulseBlink {
       0% { opacity: 1; transform: scale(1); }
@@ -134,11 +134,11 @@
       100% { opacity: 1; transform: scale(1); }
     }
 
-    .dot-st { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot-st { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
     .dot-run { background: #dc2626; box-shadow: 0 0 6px #dc2626; animation: pulseBlink 1.2s infinite ease-in-out; }
     .dot-off { background: #16a34a; }
 
-    .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 4px 10px; font-weight: 800; font-size: 11px; cursor: pointer; }
+    .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 5px 12px; font-weight: 800; font-size: 12px; cursor: pointer; }
 
     /* Single-Page 4-Column Grid Layout */
     .dashboard-grid {
@@ -179,7 +179,7 @@
       flex-shrink: 0;
     }
 
-    .plant-header-left { display: flex; align-items: center; gap: 6px; }
+    .plant-header-left { display: flex; align-items: center; gap: 8px; }
     .plant-img { 
       width: clamp(38px, 4.5vh, 55px); 
       height: clamp(38px, 4.5vh, 55px); 
@@ -190,13 +190,13 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
     }
     
-    .plant-title { font-size: clamp(12px, 1.5vh, 15px); font-weight: 900; letter-spacing: 0.1px; line-height: 1.1; }
+    .plant-title { font-size: clamp(13.5px, 1.7.vh, 16.5px); font-weight: 900; letter-spacing: 0.1px; line-height: 1.1; }
 
-    .status-pill { font-size: clamp(9px, 1.1vh, 10.5px); font-weight: 800; padding: 2px 6px; border-radius: 10px; display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+    .status-pill { font-size: clamp(10px, 1.25vh, 12px); font-weight: 800; padding: 3px 8px; border-radius: 12px; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
     .status-running { background: #ffffff; color: var(--red-alert); }
     .status-shutdown { background: #ffffff; color: var(--green-mw); }
 
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; }
     .dot-running { background: var(--red-alert); animation: pulseBlink 1.2s infinite; }
     .dot-shutdown { background: var(--green-mw); }
 
@@ -213,10 +213,10 @@
     }
 
     .capacity-gauge-box { display: flex; flex-direction: column; gap: 2px; background: #f8fafc; padding: 3px 6px; border-radius: 5px; border: 1px solid #cbd5e1; flex: 1; margin-right: 6px; min-width: 0; }
-    .gauge-header { font-size: clamp(9.5px, 1.1vh, 11px); font-weight: 700; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gauge-header { font-size: clamp(10.5px, 1.3vh, 12.5px); font-weight: 700; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .gauge-text-label { color: #475569; font-weight: 800; }
     
-    .gauge-bar-track { width: 100%; height: clamp(4px, 0.6vh, 6px); background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+    .gauge-bar-track { width: 100%; height: clamp(5px, 0.7vh, 7px); background: #e2e8f0; border-radius: 3px; overflow: hidden; }
     .gauge-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #0284c7 0%, #15803d 100%); border-radius: 3px; transition: width 0.4s ease; }
 
     /* Export Dropdown Popover */
@@ -227,12 +227,12 @@
       color: #ffffff;
       border: none;
       border-radius: 5px;
-      padding: clamp(3px, 0.5vh, 5px) 8px;
-      font-size: clamp(9.5px, 1.1vh, 11px);
+      padding: clamp(3px, 0.5vh, 5px) 9px;
+      font-size: clamp(10.5px, 1.3vh, 12px);
       font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       cursor: pointer;
       box-shadow: 0 1px 4px rgba(2, 132, 199, 0.2);
     }
@@ -248,7 +248,7 @@
       border: 1px solid var(--border-color);
       border-radius: 6px;
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
-      min-width: 155px;
+      min-width: 160px;
       z-index: 100;
       overflow: hidden;
       flex-direction: column;
@@ -260,8 +260,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 10px;
-      font-size: 11px;
+      padding: 8px 11px;
+      font-size: 12px;
       font-weight: 700;
       color: #334155;
       background: transparent;
@@ -278,9 +278,9 @@
     .unit-card {
       background: rgba(2, 132, 199, 0.08);
       border: 1px solid rgba(2, 132, 199, 0.25);
-      border-left: 3.5px solid var(--color-gt);
-      border-radius: 5px;
-      padding: clamp(2px, 0.4vh, 4px) 6px;
+      border-left: 4px solid var(--color-gt);
+      border-radius: 6px;
+      padding: clamp(2px, 0.4vh, 4px) 7px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -292,11 +292,11 @@
     .card-gross { background: rgba(79, 70, 229, 0.08); border-color: rgba(79, 70, 229, 0.25); border-left-color: var(--color-gross); }
     .card-dp { background: rgba(217, 119, 6, 0.08); border-color: rgba(217, 119, 6, 0.25); border-left-color: var(--color-dp); }
 
-    .unit-title-row { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; padding-bottom: 2px; border-bottom: 1px dashed rgba(0,0,0,0.1); flex-shrink: 0; }
+    .unit-title-row { display: flex; align-items: center; gap: 7px; margin-bottom: 2px; padding-bottom: 2px; border-bottom: 1px dashed rgba(0,0,0,0.1); flex-shrink: 0; }
 
     .badge-icon-box {
-      width: clamp(16px, 2vh, 20px);
-      height: clamp(16px, 2vh, 20px);
+      width: clamp(18px, 2.2vh, 22px);
+      height: clamp(18px, 2.2vh, 22px);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -309,18 +309,22 @@
     .badge-gross { background: var(--color-gross); }
     .badge-dp { background: var(--color-dp); }
 
-    .section-title { font-size: clamp(10.5px, 1.3vh, 12.5px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
+    .section-title { font-size: clamp(12px, 1.45vh, 14px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
     .title-gt, .title-gt1 { color: var(--color-gt); } 
     .title-st, .title-gt2 { color: var(--color-st); } 
     .title-gross { color: var(--color-gross); } 
     .title-dp { color: var(--color-dp); }
 
     .param-list { display: flex; flex-direction: column; gap: clamp(1px, 0.3vh, 3px); flex: 1; justify-content: space-around; }
-    .param-row { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 4px; padding: clamp(1px, 0.4vh, 3px) 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.01); }
-    .param-label-group { display: flex; align-items: center; gap: 6px; }
-    .param-icon-box { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .param-label-text { font-size: clamp(10px, 1.2vh, 12px); font-weight: 700; color: var(--label-muted); letter-spacing: -0.2px; white-space: nowrap; }
-    .param-value-text { font-size: clamp(13px, 1.7vh, 17px); font-weight: 800; font-family: var(--font-aptos); text-align: right; letter-spacing: -0.3px; }
+    .param-row { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 4px; padding: clamp(1px, 0.4vh, 3px) 7px; box-shadow: 0 1px 2px rgba(0,0,0,0.01); }
+    .param-label-group { display: flex; align-items: center; gap: 7px; }
+    .param-icon-box { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    
+    /* ENHANCED PARAMETER LABEL TEXT */
+    .param-label-text { font-size: clamp(11.5px, 1.45vh, 13.5px); font-weight: 800; color: #1e293b; letter-spacing: -0.1px; white-space: nowrap; }
+    
+    /* ENHANCED PARAMETER VALUE TEXT */
+    .param-value-text { font-size: clamp(15px, 2vh, 19.5px); font-weight: 800; font-family: var(--font-aptos); text-align: right; letter-spacing: -0.3px; }
 
     .val-mw { color: var(--green-mw); }
     .val-mvar { color: var(--blue-mvar); }
@@ -329,13 +333,13 @@
     .val-dp-warn { color: var(--red-alert); font-weight: 900; }
 
     .pf-badge {
-      width: clamp(15px, 1.8vh, 18px);
-      height: clamp(15px, 1.8vh, 18px);
+      width: clamp(17px, 2vh, 20px);
+      height: clamp(17px, 2vh, 20px);
       border-radius: 50%;
       background: #fef3c7;
       border: 1.2px solid #d97706;
       color: #b45309;
-      font-size: clamp(8px, 1vh, 9.5px);
+      font-size: clamp(9px, 1.1vh, 10.5px);
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -344,28 +348,28 @@
 
     /* SCADA Chart Frame */
     .chart-panel-frame { display: flex; flex-direction: column; gap: 4px; height: 100%; min-height: 0; }
-    .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 4px 8px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--accent-gold); border-radius: 6px; flex-shrink: 0; }
-    .banner-text { font-size: clamp(10px, 1.2vh, 11.5px); font-weight: 900; letter-spacing: 0.3px; text-transform: uppercase; background: linear-gradient(90deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 5px; }
-    .loading-trend-badge { display: flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; color: #ffffff; background: rgba(255, 255, 255, 0.12); padding: 2px 6px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 5px 8px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--accent-gold); border-radius: 6px; flex-shrink: 0; }
+    .banner-text { font-size: clamp(11px, 1.35vh, 13px); font-weight: 900; letter-spacing: 0.3px; text-transform: uppercase; background: linear-gradient(90deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 6px; }
+    .loading-trend-badge { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: #ffffff; background: rgba(255, 255, 255, 0.12); padding: 2px 7px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.4); }
     .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background-color: #38bdf8; box-shadow: 0 0 6px #38bdf8; animation: pulse-ring 1.4s infinite; }
 
     @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.4; } 100% { transform: scale(0.9); opacity: 1; } }
 
     #header-panel { background: #ffffff; border: 1px solid #dcdfe3; border-radius: 6px; padding: 4px 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); flex-shrink: 0; }
     .stats-row { display: flex; justify-content: space-around; align-items: center; }
-    .stat-badge { flex: 1; margin: 0 2px; padding: 4px 2px; border-radius: 6px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
-    .title-335 { font-size: clamp(9px, 1.1vh, 10.5px); font-weight: 800; color: #1976d2; }
-    .title-120 { font-size: clamp(9px, 1.1vh, 10.5px); font-weight: 800; color: #2e7d32; }
-    .title-412 { font-size: clamp(9px, 1.1vh, 10.5px); font-weight: 800; color: #d32f2f; }
-    .minmax-val { font-size: clamp(8.5px, 1vh, 9.5px); font-weight: 700; color: #334155; line-height: 1.1; }
+    .stat-badge { flex: 1; margin: 0 2px; padding: 4px 2px; border-radius: 6px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+    .title-335 { font-size: clamp(10.5px, 1.3vh, 12px); font-weight: 800; color: #1976d2; }
+    .title-120 { font-size: clamp(10.5px, 1.3vh, 12px); font-weight: 800; color: #2e7d32; }
+    .title-412 { font-size: clamp(10.5px, 1.3vh, 12px); font-weight: 800; color: #d32f2f; }
+    .minmax-val { font-size: clamp(10px, 1.2vh, 11px); font-weight: 700; color: #334155; line-height: 1.1; }
     .val-peak { color: #dc2626; font-weight: 800; }
     .val-low { color: #16a34a; font-weight: 800; }
-    .status-container { display: flex; align-items: center; justify-content: center; gap: 3px; font-size: clamp(8.5px, 1vh, 10px); font-weight: 800; }
+    .status-container { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: clamp(10px, 1.2vh, 11.5px); font-weight: 800; }
 
     .chart-container { flex: 1; position: relative; width: 100%; min-height: 0; background: #ffffff; border: 1px solid #dcdfe3; border-radius: 6px; padding: 2px; }
     .chart-container canvas { width: 100% !important; height: 100% !important; }
     .chart-footer { flex-shrink: 0; display: flex; justify-content: flex-end; align-items: center; padding: 0 2px; }
-    .btn-reset-zoom { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 12px; padding: 3px 8px; font-size: 9px; font-weight: 800; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .btn-reset-zoom { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 12px; padding: 4px 10px; font-size: 10px; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; }
     .btn-reset-zoom:active { transform: scale(0.93); background: #0f172a; }
   </style>
 </head>
@@ -409,7 +413,7 @@
       <img src="govtlogo.webp" class="logo-img" alt="Govt Logo">
       <div class="title-box">
         <div class="company-title">Electricity Generation Bangladesh PLC</div>
-        <div style="font-size:clamp(11px, 1.3vh, 13px); font-weight:700; color:var(--accent-cyan);">Real-Time Generation Monitoring Center</div>
+        <div style="font-size:clamp(12px, 1.45vh, 14.5px); font-weight:700; color:var(--accent-cyan);">Real-Time Generation Monitoring Center</div>
       </div>
       <img src="logo-egb.png" class="logo-img" alt="EGB Logo">
     </div>
@@ -440,7 +444,7 @@
       </div>
 
       <div style="display:flex; align-items:center; justify-content:flex-end; gap:8px;">
-        <span style="font-size:clamp(10px, 1.1vh, 11.5px); color:#475569; font-weight:700;" id="timestamp_val">--/--/---- --:--:--</span>
+        <span style="font-size:clamp(11px, 1.3vh, 12.5px); color:#475569; font-weight:700;" id="timestamp_val">--/--/---- --:--:--</span>
         <button class="btn-logout" onclick="handleLogout()">Logout</button>
       </div>
     </div>
@@ -474,26 +478,26 @@
 
           <div class="dropdown-container">
             <button id="btn-export-335" class="btn-export-main" onclick="toggleExportMenu335(event)">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                 <polyline points="16 6 12 2 8 6"></polyline>
                 <line x1="12" y1="2" x2="12" y2="15"></line>
               </svg>
               <span id="export-btn-label-335">Export Data</span>
-              <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
             </button>
 
             <div id="export-menu-335" class="export-menu">
               <button class="menu-item" onclick="exportData335('fgmo')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
                 <span>FGMO</span>
               </button>
               <button class="menu-item" onclick="exportData335('partial')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 <span>Partial Load</span>
               </button>
               <button class="menu-item" onclick="exportData335('full')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 <span>Full Load</span>
               </button>
             </div>
@@ -504,21 +508,21 @@
         <div class="unit-card">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gt">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-gt">Gas Turbine</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gt335_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gt335_mvar">0.00</span></div>
@@ -537,21 +541,21 @@
         <div class="unit-card card-st">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-st">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-st">Steam Turbine</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="st335_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="st335_mvar">0.00</span></div>
@@ -570,21 +574,21 @@
         <div class="unit-card card-gross">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gross">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
             </div>
             <div class="section-title title-gross">Gross CCPP Output</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gross335_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gross335_mvar">0.00</span></div>
@@ -603,14 +607,14 @@
         <div class="unit-card card-dp">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-dp">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 18h16M7 6v12M17 6v12M12 9v6M10 12h4"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 18h16M7 6v12M17 6v12M12 9v6M10 12h4"/></svg>
             </div>
             <div class="section-title title-dp">Filter Differential Pressure</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><img src="Bird.png" alt="Bird" style="width: 16px; height: 16px; object-fit: contain;"></div>
+                <div class="param-icon-box"><img src="Bird.png" alt="Bird" style="width: 17px; height: 17px; object-fit: contain;"></div>
                 <span class="param-label-text">Birdscreen DP (inH2O)</span>
               </div>
               <div class="param-value-text val-dp"><span id="dp335_bird">0.00</span></div>
@@ -618,7 +622,7 @@
             <div class="param-row">
               <div class="param-label-group">
                 <div class="param-icon-box">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2">
                     <rect x="5" y="3" width="14" height="18" rx="4"/><line x1="9" y1="7" x2="9" y2="17"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="15" y1="7" x2="15" y2="17"/><line x1="5" y1="7" x2="19" y2="7"/><line x1="5" y1="17" x2="19" y2="17"/>
                   </svg>
                 </div>
@@ -629,7 +633,7 @@
             <div class="param-row">
               <div class="param-label-group">
                 <div class="param-icon-box">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5"><path d="M18 6H6l6 6-6 6h12"/></svg>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5"><path d="M18 6H6l6 6-6 6h12"/></svg>
                 </div>
                 <span class="param-label-text">Total DP (inH2O)</span>
               </div>
@@ -666,26 +670,26 @@
 
           <div class="dropdown-container">
             <button id="btn-export-412" class="btn-export-main" onclick="toggleExportMenu412(event)">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                 <polyline points="16 6 12 2 8 6"></polyline>
                 <line x1="12" y1="2" x2="12" y2="15"></line>
               </svg>
               <span id="export-btn-label-412">Export Data</span>
-              <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
             </button>
 
             <div id="export-menu-412" class="export-menu">
               <button class="menu-item" onclick="exportData412('fgmo')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
                 <span>FGMO</span>
               </button>
               <button class="menu-item" onclick="exportData412('partial')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 <span>Partial Load</span>
               </button>
               <button class="menu-item" onclick="exportData412('full')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 <span>Full Load</span>
               </button>
             </div>
@@ -696,21 +700,21 @@
         <div class="unit-card">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gt">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-gt">Gas Turbine</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gt412_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gt412_mvar">0.00</span></div>
@@ -729,21 +733,21 @@
         <div class="unit-card card-st">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-st">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-st">Steam Turbine</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="st412_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="st412_mvar">0.00</span></div>
@@ -762,21 +766,21 @@
         <div class="unit-card card-gross">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gross">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
             </div>
             <div class="section-title title-gross">Gross CCPP Output</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gross412_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gross412_mvar">0.00</span></div>
@@ -793,7 +797,7 @@
 
       </div>
 
-      <!-- COL 3: SIDDHIRGANJ 2x120 MW PPP (INTEGRATED PLANT_CARD_120.HTML) -->
+      <!-- COL 3: SIDDHIRGANJ 2x120 MW PPP -->
       <div class="col-card">
         
         <div class="plant-header">
@@ -819,26 +823,26 @@
 
           <div class="dropdown-container">
             <button id="btn-export-120" class="btn-export-main" onclick="toggleExportMenu120(event)">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                 <polyline points="16 6 12 2 8 6"></polyline>
                 <line x1="12" y1="2" x2="12" y2="15"></line>
               </svg>
               <span id="export-btn-label-120">Export Data</span>
-              <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
             </button>
 
             <div id="export-menu-120" class="export-menu">
               <button class="menu-item" onclick="exportData120('fgmo')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
                 <span>FGMO</span>
               </button>
               <button class="menu-item" onclick="exportData120('partial')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 <span>Partial Load</span>
               </button>
               <button class="menu-item" onclick="exportData120('full')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 <span>Full Load</span>
               </button>
             </div>
@@ -849,21 +853,21 @@
         <div class="unit-card">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gt1">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-gt1">Gas Turbine 1</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gt1_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gt1_mvar">0.00</span></div>
@@ -882,21 +886,21 @@
         <div class="unit-card card-gt2">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gt2">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
             <div class="section-title title-gt2">Gas Turbine 2</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gt2_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gt2_mvar">0.00</span></div>
@@ -915,21 +919,21 @@
         <div class="unit-card card-gross">
           <div class="unit-title-row">
             <div class="badge-icon-box badge-gross">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4 2V8l4 2V4h8v16M14 8h2M14 12h2M14 16h2"/></svg>
             </div>
             <div class="section-title title-gross">Gross PPP Output</div>
           </div>
           <div class="param-list">
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="param-icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="#15803d"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <span class="param-label-text">Active Power (MW)</span>
               </div>
               <div class="param-value-text val-mw"><span id="gross120_mw">0.00</span></div>
             </div>
             <div class="param-row">
               <div class="param-label-group">
-                <div class="param-icon-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
+                <div class="param-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5"><path d="M2 12c2.5-4.5 5-6 7.5-6s5 7.5 7.5 7.5 5-3 7-6"/></svg></div>
                 <span class="param-label-text">Reactive Power (MVAR)</span>
               </div>
               <div class="param-value-text val-mvar"><span id="gross120_mvar">0.00</span></div>
@@ -980,7 +984,7 @@
 
           <div class="chart-footer">
             <button class="btn-reset-zoom" onclick="resetChartZoom()" title="Reset to Full 24H View">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
                 <path d="M3 3v5h5"></path>
               </svg>
@@ -1200,7 +1204,7 @@
       closeAllExportMenus();
     }
 
-    // 120MW Export Logic (Integrated from plant_card_120.html)
+    // 120MW Export Logic
     function exportData120(type) {
       const now = new Date();
       const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} HR`;
@@ -1336,7 +1340,7 @@
       document.getElementById('hdr_txt_412').innerText = isRun412 ? "Running" : "Shutdown";
       document.getElementById('hdr_txt_412').style.color = isRun412 ? "#dc2626" : "#16a34a";
 
-      // 3. Plant 120 Update (Integrated from plant_card_120.html)
+      // 3. Plant 120 Update
       let p120 = liveState.plant_120;
       let gt1_mw = parseVal(p120.gt1_mw);
       let gt1_mvar = parseVal(p120.gt1_mvar);
@@ -1561,28 +1565,28 @@
           interaction: { mode: 'index', intersect: false },
           scales: {
             x: {
-              title: { display: true, text: 'Time (Hours) ➔ Live Stream', align: 'end', color: '#1e293b', font: { size: 10, weight: 'bold' } },
+              title: { display: true, text: 'Time (Hours) ➔ Live Stream', align: 'end', color: '#1e293b', font: { size: 11, weight: 'bold' } },
               grid: { color: '#e2e8f0' },
-              ticks: { color: '#334155', font: { weight: '600', size: 9 } }
+              ticks: { color: '#334155', font: { weight: '700', size: 10.5 } }
             },
             y: {
-              title: { display: true, text: 'MW Output', align: 'end', color: '#1e293b', font: { size: 10, weight: 'bold' } },
+              title: { display: true, text: 'MW Output', align: 'end', color: '#1e293b', font: { size: 11, weight: 'bold' } },
               min: 0,
               max: 450,
               grid: { color: '#e2e8f0' },
-              ticks: { color: '#334155', font: { weight: '600', size: 9 } }
+              ticks: { color: '#334155', font: { weight: '700', size: 10.5 } }
             }
           },
           plugins: {
-            legend: { position: 'top', labels: { color: '#0f172a', font: { weight: 'bold', size: 10 }, boxWidth: 10 } },
+            legend: { position: 'top', labels: { color: '#0f172a', font: { weight: 'bold', size: 11.5 }, boxWidth: 12 } },
             tooltip: {
               enabled: true,
               mode: 'index',
               intersect: false,
               backgroundColor: 'rgba(15, 23, 42, 0.94)',
-              titleFont: { size: 11, weight: 'bold' },
-              bodyFont: { size: 10 },
-              padding: 6,
+              titleFont: { size: 12, weight: 'bold' },
+              bodyFont: { size: 11 },
+              padding: 7,
               cornerRadius: 5,
               callbacks: {
                 label: function(context) { return context.dataset.label + ': ' + context.parsed.y.toFixed(2) + ' MW'; }
