@@ -560,50 +560,54 @@
     function handleLogout() { auth.signOut().then(() => showPage('page-login')); }
 
     function startRealtimeListeners() {
-      // 1. Load History (Previous 24 Hours) for SCADA Trend Chart from Firebase /history
-      let twentyFourHoursAgo = Date.now() - (24 * 60 * 60 * 1000);
-      
-      db335.ref('history')
-        .orderByChild('timestamp')
-        .startAt(twentyFourHoursAgo)
-        .on('value', (snapshot) => {
-          let timeLabels = [];
-          let mw335Data = [];
-          let mw120Data = [];
-          let mw412Data = [];
+      // 1. Fetch Dynamic 24-Hour Rolling Trend from Firebase /history
+      function load24HourHistory() {
+        const now = Date.now();
+        const twentyFourHoursAgo = now - (24 * 60 * 60 * 1000);
 
-          if (snapshot.exists()) {
-            snapshot.forEach((childSnap) => {
-              let item = childSnap.val();
-              
-              // Extract formatted timestamp string or convert millis
-              let timeStr = item.time || (item.timestamp ? new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : childSnap.key);
-              timeLabels.push(timeStr);
+        db335.ref('history')
+          .orderByChild('timestamp')
+          .startAt(twentyFourHoursAgo)
+          .once('value', (snapshot) => {
+            let timeLabels = [];
+            let mw335Data = [];
+            let mw120Data = [];
+            let mw412Data = [];
 
-              // 335 MW CCPP History
-              let g335 = parseVal(item.plant_335_mw || item.gross_mw || (parseVal(item.gt_mw) + parseVal(item.st_mw)));
-              mw335Data.push(g335);
+            if (snapshot.exists()) {
+              snapshot.forEach((childSnap) => {
+                let item = childSnap.val();
+                let itemTimestamp = item.timestamp || (item.time ? new Date(item.time).getTime() : null);
 
-              // 2x120 MW PPP History
-              let g120 = parseVal(item.plant_120_mw || item.gross_120 || (parseVal(item.gt1_mw) + parseVal(item.gt2_mw)));
-              mw120Data.push(g120);
+                // Ensure data point falls within the rolling 24-hour window from now
+                if (!itemTimestamp || itemTimestamp >= twentyFourHoursAgo) {
+                  let timeStr = item.time || (itemTimestamp ? new Date(itemTimestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : childSnap.key);
 
-              // 412 MW CCPP History
-              let g412 = parseVal(item.plant_412_mw || item.gross_412 || (parseVal(item.gt412_mw) + parseVal(item.st412_mw)));
-              mw412Data.push(g412);
-            });
+                  timeLabels.push(timeStr);
+                  mw335Data.push(parseVal(item.plant_335_mw || item.gross_mw || (parseVal(item.gt_mw) + parseVal(item.st_mw))));
+                  mw120Data.push(parseVal(item.plant_120_mw || item.gross_120 || (parseVal(item.gt1_mw) + parseVal(item.gt2_mw))));
+                  mw412Data.push(parseVal(item.plant_412_mw || item.gross_412 || (parseVal(item.gt412_mw) + parseVal(item.st412_mw))));
+                }
+              });
 
-            if (chart) {
-              chart.data.labels = timeLabels;
-              chart.data.datasets[0].data = mw335Data;
-              chart.data.datasets[1].data = mw120Data;
-              chart.data.datasets[2].data = mw412Data;
-              chart.update('none');
+              if (chart) {
+                chart.data.labels = timeLabels;
+                chart.data.datasets[0].data = mw335Data;
+                chart.data.datasets[1].data = mw120Data;
+                chart.data.datasets[2].data = mw412Data;
+                chart.update('none');
+              }
             }
-          }
-        });
+          });
+      }
 
-      // 2. Realtime Listener for 335 MW CCPP
+      // Initial query for past 24 hours
+      load24HourHistory();
+
+      // Refresh window every 5 minutes to drop data points older than 24h
+      setInterval(load24HourHistory, 5 * 60 * 1000);
+
+      // 2. Realtime Listener for 335 MW CCPP Live State
       db335.ref('live').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -613,7 +617,7 @@
         }
       });
 
-      // 3. Realtime Listener for Haripur 412 MW CCPP
+      // 3. Realtime Listener for Haripur 412 MW CCPP Live State
       dbH412.ref('h412_live_generation').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -622,7 +626,7 @@
         }
       });
 
-      // 4. Realtime Listener for Siddhirganj 2x120 MW PPP
+      // 4. Realtime Listener for Siddhirganj 2x120 MW PPP Live State
       dbH412.ref('s120_live_generation').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -756,23 +760,29 @@
         total_mw: totalMW
       });
 
-      // Synchronize Chart Live End Point dynamically
+      // Synchronize Chart Live End Point dynamically within 24h rolling limit
       if (chart) {
         let datasets = chart.data.datasets;
         let labels = chart.data.labels;
 
         if (labels.length === 0 || labels[labels.length - 1] !== nowStr) {
           labels.push(nowStr);
-          if (labels.length > 288) { // Maintain rolling 24-hour limit
+          datasets[0].data.push(g335_mw);
+          datasets[1].data.push(g120_mw);
+          datasets[2].data.push(g412_mw);
+
+          // Maintain a rolling 24-hour limit (288 points max @ 5-min intervals)
+          const MAX_POINTS_24H = 288;
+          if (labels.length > MAX_POINTS_24H) {
             labels.shift();
             datasets.forEach(ds => ds.data.shift());
           }
+        } else {
+          let liveIndex = labels.length - 1;
+          datasets[0].data[liveIndex] = g335_mw;
+          datasets[1].data[liveIndex] = g120_mw;
+          datasets[2].data[liveIndex] = g412_mw;
         }
-
-        let liveIndex = labels.length - 1;
-        datasets[0].data[liveIndex] = g335_mw;
-        datasets[1].data[liveIndex] = g120_mw;
-        datasets[2].data[liveIndex] = g412_mw;
 
         let d335Data = datasets[0].data.filter(v => v !== null && v !== undefined);
         let d120Data = datasets[1].data.filter(v => v !== null && v !== undefined);
