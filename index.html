@@ -69,7 +69,6 @@
 
     .title-box { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
     
-    /* Increased Company Title Text Size */
     .company-title { 
       font-size: 19px; 
       font-weight: 900; 
@@ -109,7 +108,6 @@
       flex-shrink: 0;
     }
 
-    /* Fixed Layout Sub-Header (Prevents elements shifting when numbers change) */
     .sub-summary-bar {
       background: #ffffff;
       border-bottom: 1.5px solid #cbd5e1;
@@ -135,7 +133,6 @@
     
     .status-item { display: flex; align-items: center; gap: 6px; }
 
-    /* Blinking Animations */
     @keyframes pulseBlink {
       0% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.35; transform: scale(1.15); }
@@ -152,7 +149,6 @@
 
     .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 5px 14px; font-weight: 800; font-size: 12px; cursor: pointer; }
 
-    /* Grid Layout */
     .dashboard-grid {
       flex: 1;
       display: grid;
@@ -235,7 +231,6 @@
 
     .val-mw { color: var(--green-mw); } .val-mvar { color: var(--blue-mvar); } .val-pf { color: var(--amber-pf); } .val-dp { color: var(--green-mw); }
 
-    /* SCADA Column */
     .chart-panel-frame { display: flex; flex-direction: column; gap: 6px; height: 100%; min-height: 0; }
     .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 6px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
     .stats-row { display: flex; justify-content: space-between; gap: 4px; flex-shrink: 0; }
@@ -288,7 +283,6 @@
       <img src="logo-egb.png" class="logo-img" alt="EGB Logo">
     </div>
 
-    <!-- FIXED 3-COLUMN SUB HEADER (No Shifting) -->
     <div class="sub-summary-bar">
       <div class="mw-total-badge">
         <span>Total MW:</span>
@@ -319,7 +313,6 @@
       </div>
     </div>
 
-    <!-- 4 COLUMNS -->
     <div class="dashboard-grid">
 
       <!-- COL 1: 335 MW CCPP -->
@@ -567,6 +560,50 @@
     function handleLogout() { auth.signOut().then(() => showPage('page-login')); }
 
     function startRealtimeListeners() {
+      // 1. Load History (Previous 24 Hours) for SCADA Trend Chart from Firebase /history
+      let twentyFourHoursAgo = Date.now() - (24 * 60 * 60 * 1000);
+      
+      db335.ref('history')
+        .orderByChild('timestamp')
+        .startAt(twentyFourHoursAgo)
+        .on('value', (snapshot) => {
+          let timeLabels = [];
+          let mw335Data = [];
+          let mw120Data = [];
+          let mw412Data = [];
+
+          if (snapshot.exists()) {
+            snapshot.forEach((childSnap) => {
+              let item = childSnap.val();
+              
+              // Extract formatted timestamp string or convert millis
+              let timeStr = item.time || (item.timestamp ? new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : childSnap.key);
+              timeLabels.push(timeStr);
+
+              // 335 MW CCPP History
+              let g335 = parseVal(item.plant_335_mw || item.gross_mw || (parseVal(item.gt_mw) + parseVal(item.st_mw)));
+              mw335Data.push(g335);
+
+              // 2x120 MW PPP History
+              let g120 = parseVal(item.plant_120_mw || item.gross_120 || (parseVal(item.gt1_mw) + parseVal(item.gt2_mw)));
+              mw120Data.push(g120);
+
+              // 412 MW CCPP History
+              let g412 = parseVal(item.plant_412_mw || item.gross_412 || (parseVal(item.gt412_mw) + parseVal(item.st412_mw)));
+              mw412Data.push(g412);
+            });
+
+            if (chart) {
+              chart.data.labels = timeLabels;
+              chart.data.datasets[0].data = mw335Data;
+              chart.data.datasets[1].data = mw120Data;
+              chart.data.datasets[2].data = mw412Data;
+              chart.update('none');
+            }
+          }
+        });
+
+      // 2. Realtime Listener for 335 MW CCPP
       db335.ref('live').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -576,6 +613,7 @@
         }
       });
 
+      // 3. Realtime Listener for Haripur 412 MW CCPP
       dbH412.ref('h412_live_generation').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -584,6 +622,7 @@
         }
       });
 
+      // 4. Realtime Listener for Siddhirganj 2x120 MW PPP
       dbH412.ref('s120_live_generation').on('value', (snapshot) => {
         if (snapshot.exists()) {
           let val = snapshot.val();
@@ -594,7 +633,7 @@
     }
 
     function renderUI() {
-      const nowStr = new Date().toLocaleTimeString();
+      const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
       // 1. Plant 335
       let p335 = liveState.plant_335;
@@ -717,12 +756,20 @@
         total_mw: totalMW
       });
 
-      // Synchronize Chart Live End Point
+      // Synchronize Chart Live End Point dynamically
       if (chart) {
         let datasets = chart.data.datasets;
-        let dataLen = chart.data.labels.length;
-        let liveIndex = dataLen - 3; // Index for current live streaming point
+        let labels = chart.data.labels;
 
+        if (labels.length === 0 || labels[labels.length - 1] !== nowStr) {
+          labels.push(nowStr);
+          if (labels.length > 288) { // Maintain rolling 24-hour limit
+            labels.shift();
+            datasets.forEach(ds => ds.data.shift());
+          }
+        }
+
+        let liveIndex = labels.length - 1;
         datasets[0].data[liveIndex] = g335_mw;
         datasets[1].data[liveIndex] = g120_mw;
         datasets[2].data[liveIndex] = g412_mw;
@@ -731,18 +778,24 @@
         let d120Data = datasets[1].data.filter(v => v !== null && v !== undefined);
         let d412Data = datasets[2].data.filter(v => v !== null && v !== undefined);
 
-        document.getElementById('max-335').innerText = Math.max(...d335Data).toFixed(1);
-        document.getElementById('min-335').innerText = Math.min(...d335Data).toFixed(1);
+        if (d335Data.length > 0) {
+          document.getElementById('max-335').innerText = Math.max(...d335Data).toFixed(1);
+          document.getElementById('min-335').innerText = Math.min(...d335Data).toFixed(1);
+        }
         document.getElementById('stat_st_335').innerText = isRun335 ? "● Running" : "● Shutdown";
         document.getElementById('stat_st_335').style.color = isRun335 ? "#dc2626" : "#16a34a";
 
-        document.getElementById('max-120').innerText = Math.max(...d120Data).toFixed(1);
-        document.getElementById('min-120').innerText = Math.min(...d120Data).toFixed(1);
+        if (d120Data.length > 0) {
+          document.getElementById('max-120').innerText = Math.max(...d120Data).toFixed(1);
+          document.getElementById('min-120').innerText = Math.min(...d120Data).toFixed(1);
+        }
         document.getElementById('stat_st_120').innerText = isRun120 ? "● Running" : "● Shutdown";
         document.getElementById('stat_st_120').style.color = isRun120 ? "#dc2626" : "#16a34a";
 
-        document.getElementById('max-412').innerText = Math.max(...d412Data).toFixed(1);
-        document.getElementById('min-412').innerText = Math.min(...d412Data).toFixed(1);
+        if (d412Data.length > 0) {
+          document.getElementById('max-412').innerText = Math.max(...d412Data).toFixed(1);
+          document.getElementById('min-412').innerText = Math.min(...d412Data).toFixed(1);
+        }
         document.getElementById('stat_st_412').innerText = isRun412 ? "● Running" : "● Shutdown";
         document.getElementById('stat_st_412').style.color = isRun412 ? "#dc2626" : "#16a34a";
 
@@ -793,7 +846,7 @@
       afterDraw(chart) {
         const ctx = chart.ctx;
         const nowMs = Date.now();
-        const blinkAlpha = (Math.sin(nowMs / 180) + 1) / 2; // Pulsating alpha 0..1
+        const blinkAlpha = (Math.sin(nowMs / 180) + 1) / 2;
 
         chart.data.datasets.forEach((dataset, datasetIndex) => {
           const meta = chart.getDatasetMeta(datasetIndex);
@@ -804,7 +857,6 @@
 
           if (validData.length === 0) return;
 
-          // Find Max & Min
           let maxObj = validData[0];
           let minObj = validData[0];
           validData.forEach(d => {
@@ -815,7 +867,6 @@
           ctx.save();
           ctx.font = 'bold 9px Aptos, sans-serif';
 
-          // Max Pointer Label
           if (maxObj && maxObj.point) {
             ctx.fillStyle = dataset.borderColor;
             ctx.beginPath();
@@ -824,7 +875,6 @@
             ctx.fillText(`▲ ${maxObj.val.toFixed(1)}`, maxObj.point.x - 12, maxObj.point.y - 7);
           }
 
-          // Min Pointer Label
           if (minObj && minObj.point && minObj !== maxObj) {
             ctx.fillStyle = dataset.borderColor;
             ctx.beginPath();
@@ -833,7 +883,6 @@
             ctx.fillText(`▼ ${minObj.val.toFixed(1)}`, minObj.point.x - 12, minObj.point.y + 14);
           }
 
-          // Blinking Live Pointer at the right end of dataset
           const livePointObj = validData[validData.length - 1];
           if (livePointObj && livePointObj.point) {
             ctx.fillStyle = dataset.borderColor;
@@ -853,17 +902,16 @@
       }
     };
 
-    // Register Chart Plugin
     Chart.register(scadaPointerPlugin);
 
-    // Init Chart
+    // Init Dynamic Chart
     function initChart() {
       if (chart) return;
       const ctx = document.getElementById('scadaChart').getContext('2d');
       chart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['07:07', '09:50', '11:30', '13:10', '14:51', '17:01', '18:41', '20:21', '00:37', '02:17', '03:58', '05:38', '07:18', '08:58', '10:38', 'LIVE ➔', ' '],
+          labels: [],
           datasets: [
             {
               label: '335MW CCPP',
@@ -871,7 +919,7 @@
               backgroundColor: 'rgba(2, 132, 199, 0.08)',
               borderWidth: 2.5,
               pointRadius: 0,
-              data: [310, 315, 290, 340, 320, 335, 325, 340, 320, 325, 322, 328, 315, 325, 330.07, null, null],
+              data: [],
               fill: true,
               tension: 0.35
             },
@@ -881,7 +929,7 @@
               backgroundColor: 'rgba(22, 163, 74, 0.08)',
               borderWidth: 2.5,
               pointRadius: 0,
-              data: [205, 140, 200, 210, 205, 208, 210, 50, 0, 0, 0, 0, 0, 0, 0.98, null, null],
+              data: [],
               fill: true,
               tension: 0.35
             },
@@ -891,7 +939,7 @@
               backgroundColor: 'rgba(220, 38, 38, 0.08)',
               borderWidth: 2.5,
               pointRadius: 0,
-              data: [0, 0, 0, 0, 0, 0, 0, 200, 210, 430, 435, 370, 415, 360, 408.28, null, null],
+              data: [],
               fill: true,
               tension: 0.35
             }
@@ -914,7 +962,7 @@
               padding: 8,
               callbacks: {
                 title: function(items) {
-                  return `Time: ${items[0].label} (${new Date().toLocaleDateString()})`;
+                  return `Time: ${items[0].label}`;
                 },
                 label: function(item) {
                   return ` ${item.dataset.label}: ${item.formattedValue} MW`;
@@ -941,7 +989,6 @@
         }
       });
 
-      // Animation Loop for live blinking chart dots
       function animateChartPointers() {
         if (chart) chart.draw();
         requestAnimationFrame(animateChartPointers);
