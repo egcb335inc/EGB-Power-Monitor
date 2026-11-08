@@ -42,13 +42,13 @@
     html, body {
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
       background: #eef2f5;
       font-family: var(--font-aptos);
       user-select: none;
     }
 
-    .view-page { display: none; width: 100vw; height: 100vh; flex-direction: column; overflow: hidden; }
+    .view-page { display: none; width: 100vw; height: 100vh; flex-direction: column; }
     .view-page.active { display: flex; }
 
     /* Login Page */
@@ -140,7 +140,7 @@
 
     .btn-logout { background: var(--btn-red); color: #ffffff; border: none; border-radius: 6px; padding: 5px 12px; font-weight: 800; font-size: 12px; cursor: pointer; }
 
-    /* Single-Page 4-Column Grid Layout */
+    /* Single-Page 4-Column Grid Layout for Desktop */
     .dashboard-grid {
       flex: 1;
       display: grid;
@@ -190,7 +190,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
     }
     
-    .plant-title { font-size: clamp(13.5px, 1.7.vh, 16.5px); font-weight: 900; letter-spacing: 0.1px; line-height: 1.1; }
+    .plant-title { font-size: clamp(13.5px, 1.7vh, 16.5px); font-weight: 900; letter-spacing: 0.1px; line-height: 1.1; }
 
     .status-pill { font-size: clamp(10px, 1.25vh, 12px); font-weight: 800; padding: 3px 8px; border-radius: 12px; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
     .status-running { background: #ffffff; color: var(--red-alert); }
@@ -320,10 +320,7 @@
     .param-label-group { display: flex; align-items: center; gap: 7px; }
     .param-icon-box { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     
-    /* ENHANCED PARAMETER LABEL TEXT */
     .param-label-text { font-size: clamp(11.5px, 1.45vh, 13.5px); font-weight: 800; color: #1e293b; letter-spacing: -0.1px; white-space: nowrap; }
-    
-    /* ENHANCED PARAMETER VALUE TEXT */
     .param-value-text { font-size: clamp(15px, 2vh, 19.5px); font-weight: 800; font-family: var(--font-aptos); text-align: right; letter-spacing: -0.3px; }
 
     .val-mw { color: var(--green-mw); }
@@ -366,11 +363,53 @@
     .val-low { color: #16a34a; font-weight: 800; }
     .status-container { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: clamp(10px, 1.2vh, 11.5px); font-weight: 800; }
 
-    .chart-container { flex: 1; position: relative; width: 100%; min-height: 0; background: #ffffff; border: 1px solid #dcdfe3; border-radius: 6px; padding: 2px; }
+    .chart-container { flex: 1; position: relative; width: 100%; min-height: 220px; background: #ffffff; border: 1px solid #dcdfe3; border-radius: 6px; padding: 2px; }
     .chart-container canvas { width: 100% !important; height: 100% !important; }
     .chart-footer { flex-shrink: 0; display: flex; justify-content: flex-end; align-items: center; padding: 0 2px; }
     .btn-reset-zoom { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 12px; padding: 4px 10px; font-size: 10px; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; }
     .btn-reset-zoom:active { transform: scale(0.93); background: #0f172a; }
+
+    /* MOBILE & RESPONSIVE BREAKPOINT (STACK CARDS VERTICALLY) */
+    @media (max-width: 1024px) {
+      html, body {
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      #page-dashboard {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      .sub-summary-bar {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        text-align: center;
+        padding: 8px 12px;
+      }
+      .mw-total-badge, .status-summary-group {
+        justify-content: center;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+        gap: 12px;
+        padding: 8px;
+      }
+      .col-card {
+        height: auto;
+        min-height: unset;
+        gap: 8px;
+        padding: 8px;
+      }
+      .unit-card {
+        padding: 8px;
+      }
+      .chart-container {
+        height: 280px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -418,7 +457,7 @@
       <img src="logo-egb.png" class="logo-img" alt="EGB Logo">
     </div>
 
-    <!-- FIXED 3-COLUMN SUB HEADER -->
+    <!-- FIXED SUB HEADER -->
     <div class="sub-summary-bar">
       <div class="mw-total-badge">
         <span>Total MW:</span>
@@ -449,7 +488,7 @@
       </div>
     </div>
 
-    <!-- 4 COLUMNS SINGLE-PAGE GRID -->
+    <!-- RESPONSIVE DASHBOARD GRID -->
     <div class="dashboard-grid">
 
       <!-- COL 1: SIDDHIRGANJ 335 MW CCPP -->
@@ -1344,11 +1383,19 @@
       let p120 = liveState.plant_120;
       let gt1_mw = parseVal(p120.gt1_mw);
       let gt1_mvar = parseVal(p120.gt1_mvar);
-      let pfGT1 = p120.pf_gt1 !== undefined ? (parseVal(p120.pf_gt1) > 1 ? parseVal(p120.pf_gt1) / 100.0 : parseVal(p120.pf_gt1)) : calcPF(gt1_mw, gt1_mvar);
+      
+      // DIVIDE PF_GT1 BY 100 EXPLICITLY IF UNNORMALIZED
+      let rawPfGT1 = parseVal(p120.pf_gt1);
+      let pfGT1 = p120.pf_gt1 !== undefined 
+        ? (rawPfGT1 > 1.0 ? rawPfGT1 / 100.0 : rawPfGT1) 
+        : calcPF(gt1_mw, gt1_mvar);
 
       let gt2_mw = parseVal(p120.gt2_mw);
       let gt2_mvar = parseVal(p120.gt2_mvar);
-      let pfGT2 = p120.pf_gt2 !== undefined ? (parseVal(p120.pf_gt2) > 1 ? parseVal(p120.pf_gt2) / 100.0 : parseVal(p120.pf_gt2)) : calcPF(gt2_mw, gt2_mvar);
+      let rawPfGT2 = parseVal(p120.pf_gt2);
+      let pfGT2 = p120.pf_gt2 !== undefined 
+        ? (rawPfGT2 > 1.0 ? rawPfGT2 / 100.0 : rawPfGT2) 
+        : calcPF(gt2_mw, gt2_mvar);
 
       let g120_mw = parseVal(p120.gross_mw || (gt1_mw + gt2_mw));
       let g120_mvar = parseVal(p120.gross_mvar || (gt1_mvar + gt2_mvar));
