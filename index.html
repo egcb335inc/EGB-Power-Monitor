@@ -348,7 +348,9 @@
     .banner-title-bar { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); color: #ffffff; padding: 5px 8px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--accent-gold); border-radius: 6px; flex-shrink: 0; }
     .banner-text { font-size: clamp(11px, 1.35vh, 13px); font-weight: 900; letter-spacing: 0.3px; text-transform: uppercase; background: linear-gradient(90deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 6px; }
     .loading-trend-badge { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: #ffffff; background: rgba(255, 255, 255, 0.12); padding: 2px 7px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .loading-trend-badge.reconnecting { background: rgba(220, 38, 38, 0.25); border-color: #dc2626; color: #fca5a5; }
     .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background-color: #38bdf8; box-shadow: 0 0 6px #38bdf8; animation: pulse-ring 1.4s infinite; }
+    .pulse-dot.dot-warn { background-color: #ef4444; box-shadow: 0 0 6px #ef4444; }
 
     @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.4; } 100% { transform: scale(0.9); opacity: 1; } }
 
@@ -369,7 +371,7 @@
     .btn-reset-zoom { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 12px; padding: 4px 10px; font-size: 10px; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; }
     .btn-reset-zoom:active { transform: scale(0.93); background: #0f172a; }
 
-    /* MOBILE & RESPONSIVE BREAKPOINT (STACK CARDS VERTICALLY) */
+    /* REFINED RESPONSIVE MOBILE & TABLET LAYOUT */
     @media (max-width: 1024px) {
       html, body {
         height: auto;
@@ -381,6 +383,9 @@
         min-height: 100vh;
         overflow-y: auto;
       }
+      .dashboard-header-bar {
+        padding: 8px 10px;
+      }
       .sub-summary-bar {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -389,6 +394,7 @@
       }
       .mw-total-badge, .status-summary-group {
         justify-content: center;
+        flex-wrap: wrap;
       }
       .dashboard-grid {
         grid-template-columns: 1fr;
@@ -401,13 +407,23 @@
         height: auto;
         min-height: unset;
         gap: 8px;
-        padding: 8px;
+        padding: 10px;
       }
       .unit-card {
-        padding: 8px;
+        padding: 10px;
+      }
+      .param-row {
+        padding: 5px 8px;
+      }
+      .param-label-text {
+        font-size: 13px;
+      }
+      .param-value-text {
+        font-size: 17px;
       }
       .chart-container {
-        height: 280px;
+        height: 300px;
+        min-height: 300px;
       }
     }
   </style>
@@ -994,7 +1010,7 @@
         <div class="chart-panel-frame">
           <div class="banner-title-bar">
             <div class="banner-text">📊 GROSS MW VS 24-HOUR TREND</div>
-            <div class="loading-trend-badge"><span class="pulse-dot"></span><span id="trend-status-text">LIVE STREAMING</span></div>
+            <div class="loading-trend-badge" id="trend-badge"><span class="pulse-dot" id="trend-dot"></span><span id="trend-status-text">LIVE STREAMING</span></div>
           </div>
 
           <div id="header-panel">
@@ -1111,6 +1127,7 @@
       if (pageId === 'page-dashboard') {
         initChart();
         startRealtimeListeners();
+        setupFirebaseAutoReconnect();
       }
     }
 
@@ -1150,6 +1167,37 @@
           Object.assign(liveState.plant_120, val);
           renderUI();
         }
+      });
+    }
+
+    // AUTOMATIC FIREBASE RECONNECT & ONLINE MONITORING LOGIC
+    function setupFirebaseAutoReconnect() {
+      const badge = document.getElementById('trend-badge');
+      const text = document.getElementById('trend-status-text');
+      const dot = document.getElementById('trend-dot');
+
+      db335.ref('.info/connected').on('value', (snap) => {
+        if (snap.val() === true) {
+          if (badge) badge.classList.remove('reconnecting');
+          if (dot) dot.classList.remove('dot-warn');
+          if (text) text.innerText = 'LIVE STREAMING';
+        } else {
+          if (badge) badge.classList.add('reconnecting');
+          if (dot) dot.classList.add('dot-warn');
+          if (text) text.innerText = 'RECONNECTING...';
+          
+          // Force connection retry
+          setTimeout(() => {
+            db335.goOnline();
+            dbH412.goOnline();
+          }, 2000);
+        }
+      });
+
+      // Browser online / offline event listeners
+      window.addEventListener('online', () => {
+        db335.goOnline();
+        dbH412.goOnline();
       });
     }
 
@@ -1384,7 +1432,6 @@
       let gt1_mw = parseVal(p120.gt1_mw);
       let gt1_mvar = parseVal(p120.gt1_mvar);
       
-      // DIVIDE PF_GT1 BY 100 EXPLICITLY IF UNNORMALIZED
       let rawPfGT1 = parseVal(p120.pf_gt1);
       let pfGT1 = p120.pf_gt1 !== undefined 
         ? (rawPfGT1 > 1.0 ? rawPfGT1 / 100.0 : rawPfGT1) 
